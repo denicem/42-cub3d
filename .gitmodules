@@ -1,0 +1,3 @@
+[submodule "lib/Libft"]
+	path = lib/Libft
+	url = https://github.com/denicem/42-Libft.git
