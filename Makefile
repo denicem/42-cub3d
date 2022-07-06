@@ -18,9 +18,9 @@ CFLAGS		= -Wall -Wextra -Werror #-g
 LIBFT_DIR	=	lib/Libft
 MLX_LIB_DIR	=	lib/MLX42
 
-MLX_LIB		=	-L./$(MLX_LIB_DIR) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+MLX_LIB		= $(MLX_LIB_DIR)/libmlx42.a -lglfw -L "$(HOME)/.brew/Cellar/glfw/3.3.7/lib"
 LIBRARIES	= -L./$(LIBFT_DIR)/ -lft $(MLX_LIB)
-INCLUDES	= -I./inc -I./$(LIBFT_DIR)/inc
+INCLUDES	= -I./inc -I./$(LIBFT_DIR)/inc -I./$(MLX_LIB_DIR)/include/MLX42
 
 SRC_DIR		=	./src
 SRCS		=	main.c
@@ -38,7 +38,7 @@ $(NAME): prep Libft MLX $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBRARIES)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	make -C $(LIBFT_DIR) fclean

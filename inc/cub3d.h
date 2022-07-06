@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/06 17:06:10 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/07 00:51:44 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define CUB3D_H
 
 # include "../lib/Libft/inc/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
 #endif
