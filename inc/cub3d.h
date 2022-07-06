@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/06 21:29:51 by dmontema         ###   ########.fr       */
+/*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
+/*   Updated: 2022/07/06 17:06:10 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
+# include "../lib/Libft/inc/libft.h"
 
-int	main(int argc, char *argv[])
-{
-	(void) argv;
-	if (argc == 2)
-	{
-		if (ft_strnstr(argv[1], ".cub", strlen(argv[1])))
-		{
-			printf("Right file\n");
-		}
-		else
-		{
-			printf("Only files with .cub extension allowed.\n");
-		}
-	}
-	else
-	{
-		printf("Wrong number of arguments\n");
-	}
-	return (0);
-}
+#endif

@@ -15,85 +15,52 @@ NAME		= cub3d
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror #-g
 
-LIBFTDIR	= libs/libft
-INCLUDES	= -I./include -I./$(LIBFTDIR)/include
-LIBRARIES	= -L./$(LIBFTDIR)/
+LIBFT_DIR	=	lib/Libft
+MLX_LIB_DIR	=	lib/MLX42
 
-SDIR		=	src/*
+MLX_LIB		=	-L./$(MLX_LIB_DIR) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+LIBRARIES	= -L./$(LIBFT_DIR)/ -lft $(MLX_LIB)
+INCLUDES	= -I./inc -I./$(LIBFT_DIR)/inc
+
+SRC_DIR		=	./src
 SRCS		=	main.c
 
-ODIR		= obj
-OBJS		= $(addprefix $(ODIR)/, $(SRCS:.c=.o))
+OBJ_DIR		=	./obj
+OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-# COLORS
-COM_COLOR	= \033[0;34m
-OBJ_COLOR	= \033[0;36m
-OK_COLOR	= \033[0;32m
-ERROR_COLOR	= \033[0;31m
-WARN_COLOR	= \033[0;33m
-NO_COLOR	= \033[m
-UP			= "\033[A"
-CUT			= "\033[K"
+# ***************************************************************************** #
+#	RULES																		#
+# ***************************************************************************** #
 
-# **************************************************************************** #
-#	RULES																	   #
-# **************************************************************************** #
-
-.PHONY: all
 all: $(NAME)
 
-header:
-	@printf "$(COM_COLOR)==================== $(OBJ_COLOR)$(NAME)$(COM_COLOR) ====================$(NO_COLOR)\n"
+$(NAME): prep Libft MLX $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBRARIES)
 
-# Linking
-.PHONY: $(NAME)
-$(NAME): libft header prep $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBRARIES)
-	@printf $(UP)$(CUT)
-	@printf "%-54b %b" "$(OK_COLOR)$(NAME) compiled successfully!" "$(G)[✓]$(X)$(NO_COLOR)\n"
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
+clean:
+	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_LIB_DIR) fclean
+	rm -f $(OBJS)
+	rmdir $(OBJ_DIR)
 
-# Compiling
-.PHONY: $(ODIR)/%.o
-$(ODIR)/%.o: $(SDIR)/%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf $(UP)$(CUT)
-	@printf "%-61b %b" "$(COM_COLOR)compiling: $(OBJ_COLOR)$@" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
+fclean: clean
+	rm -f $(NAME)
 
-.PHONY: libft
-libft:
-ifneq ($(MAKECMDGOALS), $(filter $(MAKECMDGOALS), $(NAME) $(CHECKER)))
-	@make -C $(LIBFTDIR) $(MAKECMDGOALS) --silent
-else
-	@make -C $(LIBFTDIR) --silent
-endif
+re: fclean all
 
-bonus: all
-
-.PHONY: prep
 prep:
-	@mkdir -p $(ODIR)
+	@mkdir -p $(OBJ_DIR)
 
-.PHONY: clean
-clean: libft header
-	@$(RM) -r $(ODIR) $(CHECK_ODIR)
-	@printf "%-54b %b" "$(ERROR_COLOR)$(NAME) cleaned!" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
+Libft:
+	make -C $(LIBFT_DIR)
 
-.PHONY: fclean
-fclean: libft header clean
-	@$(RM) $(NAME) $(CHECKER)
-	@$(RM) -r src/$(NAME) src/*.dSYM
-	@printf "%-54b %b" "$(ERROR_COLOR)$(NAME) fcleaned!" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
-
-.PHONY: re
-re: libft fclean all
-
-.PHONY: bonus
-bonus: all
+MLX:
+	make -C $(MLX_LIB_DIR)
 
 norm:
 	@norminette -R CheckForbiddenSourceHeader include/*.h | grep --color=always 'Error!\|Error:' || echo "$(OK_COLOR)Everything is OK!$(NO_COLOR)" >&1
 	@norminette -R CheckForbiddenSourceHeader src/*.c | grep --color=always 'Error!\|Error:' || echo "$(OK_COLOR)Everything is OK!$(NO_COLOR)" >&1
 
-test:
-	@cd tests && bash tester.sh a
