@@ -56,6 +56,7 @@ $(NAME): Libft MLX $(OBJS)
 	@printf "$(BLUE)Linking objects and libraries to a binary file.\r"
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBRARIES)
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
+	@echo "\t\t$(GREEN)$(BOLD)COMPLETE!$(RESET)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | prep
 	@printf "$(BLUE)$(BOLD)\rCompiling: $(CYAN)$(notdir $<)\r"
@@ -76,7 +77,7 @@ clean:
 fclean: clean
 	@printf "$(MAGENTA)Removing binary file...\r$(RESET)"
 	@rm -rf $(NAME)
-	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
+	@printf "\e[50C$(GREEN)[✓]\n$(RESET)\n"
 
 re: fclean all
 
