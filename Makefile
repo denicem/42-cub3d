@@ -50,9 +50,7 @@ RESET	= \033[0m
 
 all: $(NAME)
 
-$(NAME): Libft MLX $(OBJS)
-#@make Libft
-#@make MLX
+$(NAME): $(OBJS)
 	@printf "$(BLUE)Linking objects and libraries to a binary file.\r"
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBRARIES)
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
@@ -60,7 +58,7 @@ $(NAME): Libft MLX $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | prep
 	@printf "$(BLUE)$(BOLD)\rCompiling: $(CYAN)$(notdir $<)\r"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
 
 clean:
@@ -82,6 +80,8 @@ fclean: clean
 re: fclean all
 
 prep:
+	@make Libft
+	@make MLX
 	@mkdir -p $(OBJ_DIR)
 
 Libft:
