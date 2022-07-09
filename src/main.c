@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/08 22:14:52 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:14:15 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
 
 int	main(int argc, char *argv[])
 {
+	int	fd;
+
 	(void) argv;
 	if (argc == 2)
 	{
-		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
-		{
-			printf("Right file\n");
-		}
-		else
-		{
-			printf("Only files with .cub extension allowed.\n");
-		}
+		fd = file_parser(argv[1]);
+		if (fd >= SUCC)
+			printf("Correct!\n");
+		else if (fd == FILE_NOT_FOUND)
+			printf("File not found!\n");
+		else if (fd == FILENAME_NOT_CORRECT)
+			printf("Only file with a .cub extension allowed!\n");
+		close(fd);
 	}
 	else
-	{
-		printf("Wrong number of arguments\n");
-	}
+		printf("Wrong number of arguments\n./cub3d <path to a map file>\n");
 	return (0);
 }
 
