@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 19:06:22 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:30:06 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,30 @@
 #define mapWidth 24
 #define mapHeight 24
 
-void	raycast_dda_prototype()
+int get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	draw_vertical_line(int x, int drawStart, int drawEnd, mlx_image_t *img)
+{
+	int	i;
+
+	i = 0;
+	// insert_textures(x, drawStart, drawEnd);
+	while (i < maphei)
+	{
+		if (i < drawStart)
+			mlx_put_pixel(img, x, i, get_rgba(255, 255, 255, 255));
+		if (i >= drawStart && i <= drawEnd)
+			mlx_put_pixel(img, x, i, get_rgba(255, 0, 0, 255));
+		if (i > drawEnd)
+			mlx_put_pixel(img, x, i, get_rgba(255, 255, 255, 255));
+		i++;
+	}
+}
+
+void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 {
 	int worldMap[mapWidth][mapHeight]=
 	{
@@ -46,7 +69,8 @@ void	raycast_dda_prototype()
 		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
-
+	
+	(void) mlx;
 	// char map[mapwid][maphei] =
 	// {
 	// 	"1111111111",
@@ -107,7 +131,7 @@ void	raycast_dda_prototype()
 		if (raydir.x < 0)
 		{
 			step.x = -1;
-			side_dist.x = (start_pos.x - curr_pos.x) + delta_dist.x;
+			side_dist.x = (start_pos.x - curr_pos.x) * delta_dist.x;
 		}
 		else
 		{
@@ -117,7 +141,7 @@ void	raycast_dda_prototype()
 		if (raydir.y < 0)
 		{
 			step.y = -1;
-			side_dist.y = (start_pos.y- curr_pos.y) + delta_dist.y;
+			side_dist.y = (start_pos.y- curr_pos.y) * delta_dist.y;
 		}
 		else
 		{
@@ -137,13 +161,13 @@ void	raycast_dda_prototype()
 			else
 			{
 				side_dist.y += delta_dist.y;
-				curr_pos.y += curr_pos.y;
+				curr_pos.y += step.y;
 				side = 1;
 			}
-			if (worldMap[(int) curr_pos.x][(int) curr_pos.y] >= 1)
+			if (worldMap[(int) curr_pos.x][(int) curr_pos.y] > 0)
 				hit = 1;
 		}
-		
+		printf("sidex: %f deltax: %f\n sidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
 		if (side == 0)
 			perpWall_dist = (side_dist.x  - delta_dist.x);
 		else
@@ -158,16 +182,17 @@ void	raycast_dda_prototype()
 		if (drawEnd >= maphei)
 			drawEnd = maphei - 1;
 
-		printf("CAMERA_X: %f\n", camera_x);
-		printf("CURR_POS[x][y]: %d %d\n", (int) curr_pos.x, (int) curr_pos.y);
-		printf("RAYDIR[x][y]: %f %f\n", raydir.x, raydir.y);
-		printf("DELTA_DIST[x][y]: %f %f\n", delta_dist.x, delta_dist.y);
-		printf("SIDE_DIST[x][y]: %f %f\n", side_dist.x, side_dist.y);
-		printf("STEP[x][y]: %d %d\n", (int) step.x, (int) step.y);
-		printf("HIT? %d, SIDE: %d\n", hit, side);
-		printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", perpWall_dist, height, drawStart, drawEnd);
-		printf("X: %d\n\n", x);
+		// printf("CAMERA_X: %f\n", camera_x);
+		// printf("CURR_POS[x][y]: %d %d\n", (int) curr_pos.x, (int) curr_pos.y);
+		// printf("RAYDIR[x][y]: %f %f\n", raydir.x, raydir.y);
+		// printf("DELTA_DIST[x][y]: %f %f\n", delta_dist.x, delta_dist.y);
+		// printf("SIDE_DIST[x][y]: %f %f\n", side_dist.x, side_dist.y);
+		// printf("STEP[x][y]: %d %d\n", (int) step.x, (int) step.y);
+		// printf("HIT? %d, SIDE: %d\n", hit, side);
+		// printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", perpWall_dist, height, drawStart, drawEnd);
+		// printf("X: %d\n\n", x);
 		
+		draw_vertical_line(x, drawStart, drawEnd, img);
 		x++;
 	}
 }

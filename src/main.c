@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 17:57:01 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:56:32 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#define mapwid 640
+#define maphei 480
 
 // int	main(int argc, char *argv[])
 // {
@@ -40,34 +43,18 @@
 
 int main()
 {
-	// char map[mapwid][maphei] =
-	// {
-	// 	"1111111111",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1111111111"
-	// };
-	
-	// t_vect start_pos;
-	// start_pos.x = 5;
-	// start_pos.y = 5;
+	mlx_t *mlx;
 
-	// t_vect dir;
-	// dir.x = -1;
-	// dir.y = 0;
-
-	// t_vect plane;
-	// plane.x = 0;
-	// plane.y = 0.66;
-
-	// int x = 0;
-	raycast_dda_prototype();
+	mlx = mlx_init(mapwid, maphei, "raycast_dda_prototype", false);
+	if (!mlx)
+		return (1);
+	mlx_image_t *img;
+	img = mlx_new_image(mlx, maphei, mapwid);
+	mlx_image_to_window(mlx, img, 0, 0);
+	raycast_dda_prototype(mlx, img);
+	mlx_loop(mlx);
+	mlx_delete_image(mlx, img);
+	mlx_terminate(mlx);
 	return (0);
 }
 
