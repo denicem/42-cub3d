@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/11 19:13:50 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:55:13 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ typedef struct	s_parser_check
 }				t_parser_check;
 
 int	file_parser(char *filename);
+void	raycast_dda_prototype();
 
 #endif
