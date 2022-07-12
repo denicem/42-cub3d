@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 19:53:30 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/13 00:04:06 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ typedef struct	s_data
 	char		*w_texture;
 	t_colour	c_colour;
 	t_colour	f_colour;
-}				s_data;
+
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+}				t_data;
 
 typedef struct	s_parser_check
 {
@@ -74,5 +77,13 @@ typedef struct	s_parser_check
 
 int	file_parser(char *filename);
 void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img);
+
+void hook(void *param);
+
+t_vect start_pos;
+t_vect dir;
+t_vect plane;
+#define MOV 1.35
+#define ROT 0.05
 
 #endif

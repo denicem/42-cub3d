@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_dda_prototype.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 21:20:15 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/12 23:42:24 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,6 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 	// };
 	
 	// (void) map;
-	t_vect start_pos;
-	start_pos.x = 2;
-	start_pos.y = 17;
-
-	t_vect dir;
-	dir.x = 0;
-	dir.y = 1;
-
-	t_vect plane;
-	plane.x = 0;
-	plane.y = 0.66;
 
 	int x = 0;
 	while (x < mapwid)
@@ -167,7 +156,7 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 			if (worldMap[(int) curr_pos.x][(int) curr_pos.y] > 0)
 				hit = 1;
 		}
-		printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
+		// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
 		if (side == 0)
 			perpWall_dist = (side_dist.x  - delta_dist.x);
 		else
