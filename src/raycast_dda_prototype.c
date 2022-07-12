@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_dda_prototype.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 20:30:06 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:20:15 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_vertical_line(int x, int drawStart, int drawEnd, mlx_image_t *img)
 	while (i < maphei)
 	{
 		if (i < drawStart)
-			mlx_put_pixel(img, x, i, get_rgba(255, 255, 255, 255));
+			mlx_put_pixel(img, x, i, get_rgba(0, 0, 0, 255));
 		if (i >= drawStart && i <= drawEnd)
 			mlx_put_pixel(img, x, i, get_rgba(255, 0, 0, 255));
 		if (i > drawEnd)
@@ -87,12 +87,12 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 	
 	// (void) map;
 	t_vect start_pos;
-	start_pos.x = 22;
-	start_pos.y = 12;
+	start_pos.x = 2;
+	start_pos.y = 17;
 
 	t_vect dir;
-	dir.x = -1;
-	dir.y = 0;
+	dir.x = 0;
+	dir.y = 1;
 
 	t_vect plane;
 	plane.x = 0;
@@ -101,7 +101,7 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 	int x = 0;
 	while (x < mapwid)
 	{
-		double camera_x = 2 * x / (double) mapWidth- 1;
+		double camera_x = 2 * x / (double) mapWidth - 1;
 
 		t_vect raydir;
 		raydir.x = dir.x + plane.x * camera_x;
@@ -116,11 +116,11 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 		if (raydir.x == 0)
 			delta_dist.x = INFINITY;
 		else
-			delta_dist.x = fabs(1 / raydir.x);
+			delta_dist.x = fabs(1.0 / raydir.x);
 		if (raydir.y == 0)
 			delta_dist.y = INFINITY;
 		else
-			delta_dist.y = fabs(1/raydir.y);
+			delta_dist.y = fabs(1.0/raydir.y);
 
 		double perpWall_dist;
 
@@ -167,13 +167,13 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 			if (worldMap[(int) curr_pos.x][(int) curr_pos.y] > 0)
 				hit = 1;
 		}
-		printf("sidex: %f deltax: %f\n sidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
+		printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
 		if (side == 0)
 			perpWall_dist = (side_dist.x  - delta_dist.x);
 		else
 			perpWall_dist = (side_dist.y  - delta_dist.y);
 		
-		int height = (int) (maphei / perpWall_dist);
+		int height = (int) (0.5 * maphei / perpWall_dist);
 
 		int drawStart = -height / 2 + maphei / 2;
 		if (drawStart < 0)

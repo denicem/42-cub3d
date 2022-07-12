@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 19:56:32 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:12:03 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main()
 	if (!mlx)
 		return (1);
 	mlx_image_t *img;
-	img = mlx_new_image(mlx, maphei, mapwid);
+	img = mlx_new_image(mlx, mapwid, maphei);
 	mlx_image_to_window(mlx, img, 0, 0);
 	raycast_dda_prototype(mlx, img);
 	mlx_loop(mlx);
