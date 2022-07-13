@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/13 02:32:09 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:09:31 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 # define FILE_NOT_FOUND -1
 # define FILENAME_NOT_CORRECT -2
 
-# define WIDTH 1200
-# define HEIGHT 1080
+
 
 typedef struct	s_vect
 {
@@ -78,20 +77,27 @@ typedef struct	s_parser_check
 int	file_parser(char *filename);
 void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img);
 void 	raycast_prototype_2();
+void 	raycast_prototype_3(mlx_image_t *img);
+float deg_to_rad(float degree);
 
 void hook(void *param);
 
 t_vect start_pos;
 t_vect dir;
 t_vect plane;
-#define MOV 1.35
-#define ROT 0.05
 
-t_vect player;
-t_vect player_delta;
-double player_angle;
+# define WIDTH 640
+# define HEIGHT 480
+
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3 * PI / 2
+
+#define MOV 0.5
+#define ROT 1
+#define FOV 60
+
+t_vect player;
+float player_angle;
 
 #endif

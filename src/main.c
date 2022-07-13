@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/13 03:04:04 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 00:06:55 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-#define mapwid 640
-#define maphei 480
 
 // int	main(int argc, char *argv[])
 // {
@@ -43,38 +40,33 @@
 
 static void init_val()
 {
-	// start_pos.x = 11;
-	// start_pos.y = 5;
+	start_pos.x = 5;
+	start_pos.y = 5;
 
-	// dir.x = 0;
-	// dir.y = 1;
+	dir.x = 0;
+	dir.y = 1;
 
-	// plane.x = 0;
-	// plane.y = 0.66;
-
-	player.x = 11; 
-	player.y = 5;
-
-	player_angle = 0;
-
+	plane.x = 0;
+	plane.y = 0.66;
 }
 
 int main()
 {
-	// t_data data;
+	t_data data;
 
-	// data.mlx = mlx_init(mapwid, maphei, "raycast_dda_prototype", false);
-	// if (!data.mlx)
-	// 	return (1);
-	// data.img = mlx_new_image(data.mlx, mapwid, maphei);
-	// mlx_image_to_window(data.mlx, data.img, 0, 0);
+	data.mlx = mlx_init(WIDTH, HEIGHT, "raycast_dda_prototype", false);
+	if (!data.mlx)
+		return (1);
+	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	init_val();
-	raycast_prototype_2();
-	// raycast_dda_prototype(data.mlx, data.img);
-	// mlx_loop_hook(data.mlx, &hook, &data);
-	// mlx_loop(data.mlx);
-	// mlx_delete_image(data.mlx, data.img);
-	// mlx_terminate(data.mlx);
+	raycast_dda_prototype(data.mlx, data.img);
+	// raycast_prototype_2();
+	// raycast_prototype_3(data.img);
+	mlx_loop_hook(data.mlx, &hook, &data);
+	mlx_loop(data.mlx);
+	mlx_delete_image(data.mlx, data.img);
+	mlx_terminate(data.mlx);
 	return (0);
 }
 

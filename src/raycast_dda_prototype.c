@@ -6,20 +6,15 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/12 23:42:24 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 00:06:20 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-#define mapwid 640
-#define maphei 480
-#define mapWidth 24
-#define mapHeight 24
-
 int get_rgba(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 void	draw_vertical_line(int x, int drawStart, int drawEnd, mlx_image_t *img)
@@ -28,7 +23,7 @@ void	draw_vertical_line(int x, int drawStart, int drawEnd, mlx_image_t *img)
 
 	i = 0;
 	// insert_textures(x, drawStart, drawEnd);
-	while (i < maphei)
+	while (i < HEIGHT)
 	{
 		if (i < drawStart)
 			mlx_put_pixel(img, x, i, get_rgba(0, 0, 0, 255));
@@ -42,55 +37,26 @@ void	draw_vertical_line(int x, int drawStart, int drawEnd, mlx_image_t *img)
 
 void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 {
-	int worldMap[mapWidth][mapHeight]=
-	{
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
-	
 	(void) mlx;
-	// char map[mapwid][maphei] =
-	// {
-	// 	"1111111111",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1000000001",
-	// 	"1111111111"
-	// };
-	
-	// (void) map;
+
+	int map[10][10] =
+	{
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,0,1,1,0,0,0,0,0,1},
+		{1,0,1,0,0,0,1,0,0,1},
+		{1,0,1,0,0,0,1,0,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,1,1,1,1,1,1,1,1,1},
+	};
 
 	int x = 0;
-	while (x < mapwid)
+	while (x < WIDTH)
 	{
-		double camera_x = 2 * x / (double) mapWidth - 1;
+		float camera_x = 2 * x / (float) WIDTH - 1;
 
 		t_vect raydir;
 		raydir.x = dir.x + plane.x * camera_x;
@@ -111,7 +77,7 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 		else
 			delta_dist.y = fabs(1.0/raydir.y);
 
-		double perpWall_dist;
+		float perpWall_dist;
 
 		t_vect step;
 		int hit = 0;
@@ -153,24 +119,24 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 				curr_pos.y += step.y;
 				side = 1;
 			}
-			if (worldMap[(int) curr_pos.x][(int) curr_pos.y] > 0)
+			if (map[(int) curr_pos.y][(int) curr_pos.x] >= 1)
 				hit = 1;
 		}
-		// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
 		if (side == 0)
 			perpWall_dist = (side_dist.x  - delta_dist.x);
 		else
 			perpWall_dist = (side_dist.y  - delta_dist.y);
 		
-		int height = (int) (0.5 * maphei / perpWall_dist);
+		int height = (int) (0.5 * HEIGHT / perpWall_dist);
 
-		int drawStart = -height / 2 + maphei / 2;
+		int drawStart = -height / 2 + HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		int drawEnd = height / 2 + maphei / 2;
-		if (drawEnd >= maphei)
-			drawEnd = maphei - 1;
+		int drawEnd = height / 2 + HEIGHT / 2;
+		if (drawEnd >= HEIGHT)
+			drawEnd = HEIGHT - 1;
 
+		// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
 		// printf("CAMERA_X: %f\n", camera_x);
 		// printf("CURR_POS[x][y]: %d %d\n", (int) curr_pos.x, (int) curr_pos.y);
 		// printf("RAYDIR[x][y]: %f %f\n", raydir.x, raydir.y);
