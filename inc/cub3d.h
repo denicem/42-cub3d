@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/13 00:04:06 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/13 02:32:09 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 typedef struct	s_vect
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }				t_vect;
 
 typedef struct	s_colour
@@ -77,6 +77,7 @@ typedef struct	s_parser_check
 
 int	file_parser(char *filename);
 void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img);
+void 	raycast_prototype_2();
 
 void hook(void *param);
 
@@ -85,5 +86,12 @@ t_vect dir;
 t_vect plane;
 #define MOV 1.35
 #define ROT 0.05
+
+t_vect player;
+t_vect player_delta;
+double player_angle;
+# define PI 3.1415926535
+# define PI2 PI/2
+# define PI3 3 * PI / 2
 
 #endif
