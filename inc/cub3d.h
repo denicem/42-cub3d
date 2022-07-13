@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/13 23:09:31 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 01:47:02 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # define FAIL 0
 # define FILE_NOT_FOUND -1
 # define FILENAME_NOT_CORRECT -2
-
-
 
 typedef struct	s_vect
 {
@@ -74,11 +72,12 @@ typedef struct	s_parser_check
 	bool	map_identifier;
 }				t_parser_check;
 
-int	file_parser(char *filename);
+int		file_parser(char *filename);
 void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img);
-void 	raycast_prototype_2();
-void 	raycast_prototype_3(mlx_image_t *img);
-float deg_to_rad(float degree);
+
+void	raycast_prototype_2();
+void	raycast_prototype_3(mlx_image_t *img);
+float	deg_to_rad(float degree);
 
 void hook(void *param);
 
@@ -86,18 +85,25 @@ t_vect start_pos;
 t_vect dir;
 t_vect plane;
 
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1080
+# define HEIGHT 720
 
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3 * PI / 2
 
 #define MOV 0.5
-#define ROT 1
+#define ROT 0.02
 #define FOV 60
 
 t_vect player;
 float player_angle;
+
+// NOTE:
+// [X,Y]
+// Looking North:	DIR[0, -1], PLANE[-0.66, 0]
+// Looking East:	DIR[-1, 0], PLANE[0, 0.66]
+// Looking South:	DIR[0, 1], PLANE[0.66, 0]
+// Looking West:	DIR[1, 0], PLANE[0, -0.66]
 
 #endif

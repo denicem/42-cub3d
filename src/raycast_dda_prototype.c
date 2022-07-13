@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 00:06:20 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 01:49:28 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 	int map[10][10] =
 	{
 		{1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,1,1,0,0,0,0,0,1},
-		{1,0,1,0,0,0,1,0,0,1},
-		{1,0,1,0,0,0,1,0,0,1},
+		{1,1,0,0,0,0,0,0,1,1},
 		{1,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,1},
+		{1,1,1,1,0,0,1,1,1,1},
+		{1,0,1,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,1,0,1},
 		{1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1}
 	};
 
-	int x = 0;
-	while (x < WIDTH)
+	int rayCount = 0;
+	while (rayCount < WIDTH)
 	{
-		float camera_x = 2 * x / (float) WIDTH - 1;
+		float camera_x = 2 * rayCount / (float) WIDTH - 1;
 
 		t_vect raydir;
 		raydir.x = dir.x + plane.x * camera_x;
@@ -147,7 +147,7 @@ void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img)
 		// printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", perpWall_dist, height, drawStart, drawEnd);
 		// printf("X: %d\n\n", x);
 		
-		draw_vertical_line(x, drawStart, drawEnd, img);
-		x++;
+		draw_vertical_line(rayCount, drawStart, drawEnd, img);
+		rayCount++;
 	}
 }

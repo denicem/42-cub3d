@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 00:06:55 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 01:49:02 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@
 static void init_val()
 {
 	start_pos.x = 5;
-	start_pos.y = 5;
+	start_pos.y = 2;
 
 	dir.x = 0;
 	dir.y = 1;
 
-	plane.x = 0;
-	plane.y = 0.66;
+	plane.x = 0.66;
+	plane.y = 0;
 }
 
 int main()
 {
 	t_data data;
 
-	data.mlx = mlx_init(WIDTH, HEIGHT, "raycast_dda_prototype", false);
+	data.mlx = mlx_init(WIDTH, HEIGHT, "raycast_dda_prototype", true);
 	if (!data.mlx)
 		return (1);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
