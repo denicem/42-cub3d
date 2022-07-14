@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 02:52:18 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 22:10:18 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void hook(void *param)
 		// printf("DIR_X: %f, DIR_Y: %f\n", dir.x, dir.y);
 	}
 	raycast_dda_prototype(mlx, data.img);
+		
 }
 
 //	NOTE:

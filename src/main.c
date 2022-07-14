@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 02:50:26 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 20:57:39 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ int	main(int argc, char *argv[])
 		fd = file_parser(argv[1]);
 		if (fd >= SUCC)
 		{
-			printf("Correct!\n");
+			printf("\e[35mCorrect!\n");
 			render_world();
 		}
 		else if (fd == FILE_NOT_FOUND)
-			printf("File not found!\n");
+			printf("\e[31mFile not found!\n\e[0m");
 		else if (fd == FILENAME_NOT_CORRECT)
-			printf("Only file with a .cub extension allowed!\n");
+			printf("\e[31mOnly file with a .cub extension allowed!\n\e[0m");
 		close(fd);
 	}
 	else
-		printf("Wrong number of arguments\n./cub3d <path to a map file>\n");
+		printf("\e[31mWrong number of arguments\n\e[42m./cub3d <path to a map file>[✓]\n");
 	return (0);
 }

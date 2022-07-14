@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 02:48:52 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 22:25:47 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ t_vect plane;
 # define PI2 PI/2
 # define PI3 3 * PI / 2
 
-#define MOV 0.02
-#define ROT 0.02
+#define MOV 0.18
+#define ROT 0.15
 #define FOV 60
 
 t_vect player;
