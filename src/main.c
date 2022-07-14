@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 20:57:39 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:39:49 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,43 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void init_val()
+// t_data	*get_data()
+// {
+// 	static t_data data;
+
+// 	return (&data);
+// }
+
+void init_val(t_data *data)
 {
+	// (void) data;
+	// allocate memory for structs
+	data->player = malloc(sizeof(t_player));
+	if (!data->player)
+		exit(FAIL); //alloc failed
+
+	// setting up player starting position // TODO: memory allocation for data
+	data->player->pos.x = 5;
+	data->player->pos.y = 2;
+
+	data->player->dir.x = 0;
+	data->player->dir.y = 1;
+
+	data->player->plane.x = 0.66;
+	data->player->plane.y = 0;
+
+	//setting up map
+	// data->map_int[0] = {1,1,1,1,1,1,1,1,1,1};
+	// data->map_int[1] = {1,1,0,0,0,0,0,0,1,1};
+	// data->map_int[2] = {1,0,0,0,0,0,0,0,0,1};
+	// data->map_int[3] = {1,0,0,0,0,0,0,0,0,1};
+	// data->map_int[4] = {1,0,0,0,0,0,0,0,0,1};
+	// data->map_int[5] = {1,1,1,1,0,0,1,1,1,1};
+	// data->map_int[6] = {1,0,1,0,0,0,0,1,0,1};
+	// data->map_int[7] = {1,0,1,0,0,0,0,1,0,1};
+	// data->map_int[8] = {1,0,0,0,0,0,0,0,0,1};
+	// data->map_int[9] = {1,1,1,1,1,1,1,1,1,1};
+
 	start_pos.x = 5;
 	start_pos.y = 2;
 
@@ -27,25 +62,27 @@ static void init_val()
 
 	plane.x = 0.66;
 	plane.y = 0;
+
+	// printf("start_pos: %d %d\nplayer_pos: %d %d\n", (int) player.x, (int) player.y, (int) data->player->pos.x, (int) data->player->pos.y);
 }
 
 int render_world()
 {
 	t_data data;
 
+	// data = get_data();
 	data.mlx = mlx_init(WIDTH, HEIGHT, "raycast_dda_prototype", true);
 	if (!data.mlx)
 		return (1);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	init_val();
-	raycast_dda_prototype(data.mlx, data.img);
-	// raycast_prototype_2();
-	// raycast_prototype_3(data.img);
+	init_val(&data);
+	raycast_dda_prototype(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_delete_image(data.mlx, data.img);
 	mlx_terminate(data.mlx);
+	free(data.player);
 	return (0);
 }
 

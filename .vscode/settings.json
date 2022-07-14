@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"memory_resource": "c",
+		"memory": "c",
+		"__node_handle": "c"
+	}
+}

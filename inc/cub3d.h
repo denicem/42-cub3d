@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 22:25:47 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/14 23:23:46 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ typedef struct	s_colour
 	int	blue;
 }				t_colour;
 
+typedef struct	s_ray
+{
+	float	camera;
+	t_vect	dir;
+	t_vect	pos;
+	t_vect	side_dist;
+	t_vect	delta_dist;
+	t_vect	step;
+	int		side;
+	int		hit;
+	float	wall_dist;
+}				t_ray;
+
 typedef struct	s_player
 {
 	t_vect	pos;
@@ -49,7 +62,8 @@ typedef struct	s_data
 {
 	t_player	*player;
 	char		*file;
-	char		*map;
+	char		**map;
+	int			map_int[10][10]; //temp
 	char		*n_texture;
 	char		*e_texture;
 	char		*s_texture;
@@ -73,7 +87,7 @@ typedef struct	s_parser_check
 }				t_parser_check;
 
 int		file_parser(char *filename);
-void	raycast_dda_prototype(mlx_t *mlx, mlx_image_t *img);
+void	raycast_dda_prototype(t_data *data);
 
 void	raycast_prototype_2();
 void	raycast_prototype_3(mlx_image_t *img);
@@ -85,8 +99,8 @@ t_vect start_pos;
 t_vect dir;
 t_vect plane;
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 640
+# define HEIGHT 480
 
 # define PI 3.1415926535
 # define PI2 PI/2
