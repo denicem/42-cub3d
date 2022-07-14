@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/14 01:47:02 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/14 02:48:52 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ t_vect start_pos;
 t_vect dir;
 t_vect plane;
 
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3 * PI / 2
 
-#define MOV 0.5
+#define MOV 0.02
 #define ROT 0.02
 #define FOV 60
 
