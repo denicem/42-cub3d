@@ -6,12 +6,17 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 00:48:29 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:04:27 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+/*
+** -----------------------------------------------------------------------------
+** INCLUDES, DEFINES, COLOUR CODES, ...
+*/
 
 # include "../lib/Libft/inc/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
@@ -27,8 +32,24 @@
 
 # define WIDTH 640
 # define HEIGHT 480
-# define MOV 0.18
-# define ROT 0.15
+# define MOV 0.08
+# define ROT 0.08
+
+# define BLACK		"\033[0;30m"
+# define RED		"\033[0;31m"
+# define GREEN		"\033[0;32m"
+# define YELLOW		"\033[0;33m"
+# define BLUE		"\033[0;34m"
+# define PURPLE		"\033[0;35m"
+# define CYAN		"\033[0;36m"
+# define WHITE		"\033[0;37m"
+# define RESET		"\033[0m"
+# define GREEN_BG	"\e[42m"
+
+/*
+** -----------------------------------------------------------------------------
+** STRUCTS
+*/
 
 typedef struct	s_vect
 {
@@ -90,6 +111,11 @@ typedef struct	s_parser_check
 	bool	f_identifier;
 	bool	map_identifier;
 }				t_parser_check;
+
+/*
+** -----------------------------------------------------------------------------
+** FUNCTIONS
+*/
 
 int		file_parser(char *filename);
 void	raycast_dda_prototype(t_data *data);

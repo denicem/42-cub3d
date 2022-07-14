@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 00:44:30 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:59:12 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void hook(void *param)
 			data->player->plane.y = old_plane_x * sin(-ROT) + data->player->plane.y * cos(-ROT);
 		}
 	}
-	printf("POS_X: %f, POS_Y: %f\n", data->player->pos.x, data->player->pos.y);
+	// printf("POS_X: %f, POS_Y: %f\n", data->player->pos.x, data->player->pos.y);
 	raycast_dda_prototype(data);
 }
 
