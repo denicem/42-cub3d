@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 00:39:49 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:42:05 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@
 
 void init_val(t_data *data)
 {
-	// (void) data;
 	// allocate memory for structs
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		exit(FAIL); //alloc failed
 
-	// setting up player starting position // TODO: memory allocation for data
+	// setting up player starting position
 	data->player->pos.x = 5;
 	data->player->pos.y = 2;
 
@@ -53,17 +52,6 @@ void init_val(t_data *data)
 	// data->map_int[7] = {1,0,1,0,0,0,0,1,0,1};
 	// data->map_int[8] = {1,0,0,0,0,0,0,0,0,1};
 	// data->map_int[9] = {1,1,1,1,1,1,1,1,1,1};
-
-	start_pos.x = 5;
-	start_pos.y = 2;
-
-	dir.x = 0;
-	dir.y = 1;
-
-	plane.x = 0.66;
-	plane.y = 0;
-
-	// printf("start_pos: %d %d\nplayer_pos: %d %d\n", (int) player.x, (int) player.y, (int) data->player->pos.x, (int) data->player->pos.y);
 }
 
 int render_world()

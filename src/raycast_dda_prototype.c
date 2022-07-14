@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 00:39:23 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:43:29 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	raycast_dda_prototype(t_data *data)
 	int		wallStart;
 	int		wallEnd;
 
-	printf("RAY_HIT: %d\n", ray.hit);
 	int map[10][10] = //temp
 	{
 		{1,1,1,1,1,1,1,1,1,1},
@@ -74,42 +73,16 @@ void	raycast_dda_prototype(t_data *data)
 		{1,1,1,1,1,1,1,1,1,1}
 	};
 
-	// printf("start_pos: %d %d\nplayer_pos: %d %d\n", (int) start_pos.x, (int) start_pos.y, (int) data->player->pos.x, (int) data->player->pos.y);
-
 	rayCount = 0;
 	while (rayCount < WIDTH)
 	{
 		//resets ray
 		reset_ray(&ray);
 		// setting up starting values for a ray
-		// float camera_x = 2 * rayCount / (float) WIDTH - 1;
-
 		ray.camera = 2 * rayCount / (float) WIDTH - 1;
-
-		// t_vect raydir;
-		// raydir.x = dir.x + plane.x * camera_x;
-		// raydir.y = dir.y + plane.y * camera_x;
-
 		ray.dir.x = data->player->dir.x + data->player->plane.x * ray.camera;
 		ray.dir.y = data->player->dir.y + data->player->plane.y * ray.camera;
-		
-		// t_vect curr_pos;
-		// curr_pos = start_pos;
-
 		ray.pos = data->player->pos;
-
-		// setting up delta_dist for ray
-		// t_vect side_dist;
-		// t_vect delta_dist;
-		// if (raydir.x == 0)
-		// 	delta_dist.x = INFINITY;
-		// else
-		// 	delta_dist.x = fabs(1.0 / raydir.x);
-		// if (raydir.y == 0)
-		// 	delta_dist.y = INFINITY;
-		// else
-		// 	delta_dist.y = fabs(1.0/raydir.y);
-
 		if (ray.dir.x == 0)
 			ray.delta_dist.x = INFINITY;
 		else
@@ -119,34 +92,7 @@ void	raycast_dda_prototype(t_data *data)
 		else
 			ray.delta_dist.y = fabs(1.0 / ray.dir.y);
 
-		// float perpWall_dist;
-
-		// t_vect step;
-		// int hit = 0;
-		// int side;
-
 		// setting up step and side_dist for ray
-		// if (raydir.x < 0)
-		// {
-		// 	step.x = -1;
-		// 	side_dist.x = (start_pos.x - curr_pos.x) * delta_dist.x;
-		// }
-		// else
-		// {
-		// 	step.x = 1;
-		// 	side_dist.x = (curr_pos.x + 1.0 - start_pos.x) * delta_dist.x;
-		// }
-		// if (raydir.y < 0)
-		// {
-		// 	step.y = -1;
-		// 	side_dist.y = (start_pos.y- curr_pos.y) * delta_dist.y;
-		// }
-		// else
-		// {
-		// 	step.y = 1;
-		// 	side_dist.y = (curr_pos.y + 1.0 - start_pos.y) * delta_dist.y;
-		// }
-
 		if (ray.dir.x < 0)
 		{
 			ray.step.x = -1;
@@ -168,25 +114,7 @@ void	raycast_dda_prototype(t_data *data)
 			ray.side_dist.y = (ray.pos.y + 1.0 - data->player->pos.y) * ray.delta_dist.y;
 		}
 
-		//DDA
-		// while (hit == 0)
-		// {
-		// 	if (side_dist.x < side_dist.y)
-		// 	{
-		// 		side_dist.x += delta_dist.x;
-		// 		curr_pos.x += step.x;
-		// 		side = 0;
-		// 	}
-		// 	else
-		// 	{
-		// 		side_dist.y += delta_dist.y;
-		// 		curr_pos.y += step.y;
-		// 		side = 1;
-		// 	}
-		// 	if (map[(int) curr_pos.y][(int) curr_pos.x] >= 1)
-		// 		hit = 1;
-		// }
-	
+		//DDA	
 		while (ray.hit == 0)
 		{
 			if (ray.side_dist.x < ray.side_dist.y)
@@ -206,28 +134,13 @@ void	raycast_dda_prototype(t_data *data)
 		}
 
 		// defining ray distance to wall
-		// if (side == 0)
-		// 	perpWall_dist = (side_dist.x  - delta_dist.x);
-		// else
-		// 	perpWall_dist = (side_dist.y  - delta_dist.y);
-
 		if (ray.side == 0)
 			ray.wall_dist = ray.side_dist.x - ray.delta_dist.x;
 		else
 			ray.wall_dist = ray.side_dist.y - ray.delta_dist.y;
 		
 		// defining height and draw values
-		// int height_old = (int) (0.5 * HEIGHT / perpWall_dist);
-
 		height = (int) (HEIGHT * 0.5 / ray.wall_dist);
-
-		// int drawStart = -height_old / 2 + HEIGHT / 2;
-		// if (drawStart < 0)
-		// 	drawStart = 0;
-		// int drawEnd = height_old / 2 + HEIGHT / 2;
-		// if (drawEnd >= HEIGHT)
-		// 	drawEnd = HEIGHT - 1;
-
 		wallStart = -height / 2 + HEIGHT / 2;
 		if (wallStart < 0)
 			wallStart = 0;
