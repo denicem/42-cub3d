@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 02:22:08 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 21:20:30 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	init_ray(t_ray *ray, t_data *data, int rayCount)
 	ray->camera = 2 * rayCount / (float) WIDTH - 1;
 	ray->dir.x = data->player->dir.x + data->player->plane.x * ray->camera;
 	ray->dir.y = data->player->dir.y + data->player->plane.y * ray->camera;
-	ray->pos = data->player->pos;
 	if (ray->dir.x == 0)
 		ray->delta_dist.x = INFINITY;
 	else
@@ -32,6 +31,9 @@ void	init_ray(t_ray *ray, t_data *data, int rayCount)
 
 void	set_dist(t_ray *ray, t_data *data)
 {
+
+	ray->pos.x = (int)data->player->pos.x;
+	ray->pos.y = (int)data->player->pos.y;
 	if (ray->dir.x < 0)
 	{
 		ray->step.x = -1;
@@ -70,7 +72,7 @@ void	dda(t_ray *ray, int map[10][10]) // TODO: use map from struct data
 			ray->pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (map[(int) ray->pos.y][(int) ray->pos.x] >= 1) // TODO: change to ASCII VALUES for official map and change map
+		if (map[ray->pos.y][ray->pos.x] >= 1) // TODO: change to ASCII VALUES for official map and change map
 			ray->hit = 1;
 	}
 }

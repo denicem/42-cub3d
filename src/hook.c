@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 02:26:22 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 21:39:15 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 
 void hook(void *param)
 {
+	int map[10][10] = //temp
+	{
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,0,0,0,0,0,0,1,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,1,1,1,0,0,1,1,1,1},
+		{1,0,1,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,1,0,1},
+		{1,0,0,0,0,0,0,0,0,1},
+		{1,1,1,1,1,1,1,1,1,1}
+	};
 	t_data *data = (t_data *) param;
 	mlx_t *mlx;
 
@@ -23,23 +36,52 @@ void hook(void *param)
 	// TODO: Wall collision
 	if (mlx_is_key_down(mlx, MLX_KEY_W)) // Going forward
 	{
-		data->player->pos.x += data->player->dir.x * MOV;
-		data->player->pos.y += data->player->dir.y * MOV;
+		t_vect	vector;
+		vector.x = data->player->pos.x + data->player->dir.x * MOV;
+		vector.y = data->player->pos.y + data->player->dir.y * MOV;
+		if (map[(int)vector.y][(int)vector.x] == 0)
+		{
+			
+			data->player->pos.x = vector.x ;
+			data->player->pos.y = vector.y;
+		}
+		
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_A)) // Going sideways left
 	{
-		data->player->pos.x -= data->player->dir.y * MOV;
-		data->player->pos.y -= data->player->dir.x * MOV;
+		t_vect	vector;
+		vector.x = data->player->pos.x - data->player->dir.y * MOV;
+		vector.y = data->player->pos.y + data->player->dir.x * MOV;
+		if (map[(int)vector.y][(int)vector.x] == 0)
+		{
+			
+			data->player->pos.x = vector.x;
+			data->player->pos.y = vector.y;
+		}
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_S)) // Going backwards
 	{
-		data->player->pos.x -= data->player->dir.x * MOV;
-		data->player->pos.y -= data->player->dir.y * MOV;
+		t_vect	vector;
+		vector.x = data->player->pos.x - data->player->dir.x * MOV;
+		vector.y = data->player->pos.y - data->player->dir.y * MOV;
+		if (map[(int)vector.y][(int)vector.x] == 0)
+		{
+			
+			data->player->pos.x = vector.x;
+			data->player->pos.y = vector.y;
+		}
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_D)) // Going sideways right
 	{
-		data->player->pos.x += data->player->dir.y * MOV;
-		data->player->pos.y += data->player->dir.x * MOV;
+		t_vect	vector;
+		vector.x = data->player->pos.x + data->player->dir.y * MOV;
+		vector.y = data->player->pos.y - data->player->dir.x * MOV;
+		if (map[(int)vector.y][(int)vector.x] == 0)
+		{
+			
+			data->player->pos.x = vector.x;
+			data->player->pos.y = vector.y;
+		}
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_R)) // Resetting to start position
 	{

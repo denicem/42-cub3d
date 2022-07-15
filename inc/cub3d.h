@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 02:20:42 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 21:43:27 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # define WIDTH 640
 # define HEIGHT 480
-# define MOV 0.08
+# define MOV 0.07
 # define ROT 0.06
 
 # define BLACK		"\033[0;30m"
@@ -51,6 +51,11 @@
 ** STRUCTS
 */
 
+typedef struct	s_invec
+{
+	int	x;
+	int	y;
+}				t_invec;
 typedef struct	s_vect
 {
 	float	x;
@@ -68,7 +73,7 @@ typedef struct	s_ray
 {
 	float	camera;
 	t_vect	dir;
-	t_vect	pos;
+	t_invec	pos;
 	t_vect	side_dist;
 	t_vect	delta_dist;
 	t_vect	step;
