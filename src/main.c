@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 01:04:51 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:16:59 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,7 @@ void init_val(t_data *data)
 	data->player->dir.y = 1;
 
 	data->player->plane.x = 0.66;
-	data->player->plane.y = 0;
-
-	//setting up map
-	// data->map_int[0] = {1,1,1,1,1,1,1,1,1,1};
-	// data->map_int[1] = {1,1,0,0,0,0,0,0,1,1};
-	// data->map_int[2] = {1,0,0,0,0,0,0,0,0,1};
-	// data->map_int[3] = {1,0,0,0,0,0,0,0,0,1};
-	// data->map_int[4] = {1,0,0,0,0,0,0,0,0,1};
-	// data->map_int[5] = {1,1,1,1,0,0,1,1,1,1};
-	// data->map_int[6] = {1,0,1,0,0,0,0,1,0,1};
-	// data->map_int[7] = {1,0,1,0,0,0,0,1,0,1};
-	// data->map_int[8] = {1,0,0,0,0,0,0,0,0,1};
-	// data->map_int[9] = {1,1,1,1,1,1,1,1,1,1};
+	data->player->plane.y = 0;	
 }
 
 int render_world()
@@ -59,13 +47,13 @@ int render_world()
 	t_data data;
 
 	// data = get_data();
-	data.mlx = mlx_init(WIDTH, HEIGHT, "raycast_dda_prototype", true);
+	data.mlx = mlx_init(WIDTH, HEIGHT, "Hypercub3d", true);
 	if (!data.mlx)
 		return (1);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	init_val(&data);
-	raycast_dda_prototype(&data);
+	raycast(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_delete_image(data.mlx, data.img);

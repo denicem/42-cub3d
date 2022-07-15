@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 01:04:27 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:20:42 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define WIDTH 640
 # define HEIGHT 480
 # define MOV 0.08
-# define ROT 0.08
+# define ROT 0.06
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -89,7 +89,6 @@ typedef struct	s_data
 	t_player	*player;
 	char		*file;
 	char		**map;
-	int			map_int[10][10]; //temp
 	char		*n_texture;
 	char		*e_texture;
 	char		*s_texture;
@@ -99,6 +98,8 @@ typedef struct	s_data
 
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+
+	int			**map_int; // temp
 }				t_data;
 
 typedef struct	s_parser_check
@@ -118,13 +119,18 @@ typedef struct	s_parser_check
 */
 
 int		file_parser(char *filename);
-void	raycast_dda_prototype(t_data *data);
 
-void	raycast_prototype_2();
-void	raycast_prototype_3(mlx_image_t *img);
-float	deg_to_rad(float degree);
+void	raycast(t_data *data);
+void	init_ray(t_ray *ray, t_data *data, int rayCount);
+void	set_dist(t_ray *ray, t_data *data);
+void	dda(t_ray *ray, int map[10][10]);
+void	set_ray_dist(t_ray *ray);
+void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd);
 
-void hook(void *param);
+void	draw_vertical_line(int ray, int wallStart, int wallEnd, mlx_image_t *img);
+int get_rgba(int r, int g, int b, int a);
+
+void	hook(void *param);
 
 // NOTE:
 // [X,Y]
