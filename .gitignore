@@ -3,7 +3,9 @@
 *.o
 *.d
 *.a
-*.pdf
-*.cpp
-
 cub3d
+
+*.cpp
+*.pdf
+.vscode
+.vscode/*
