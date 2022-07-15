@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 02:22:21 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:26:22 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void hook(void *param)
 		if (mlx_is_key_down(mlx, MLX_KEY_RIGHT)) // Rotate Right
 		{
 			data->player->dir.x = data->player->dir.x * cos(-ROT) - data->player->dir.y * sin(-ROT);
-			data->player->dir.y = old_dir_x * sin(-ROT) + data->player->dir.πy * cos(-ROT);
+			data->player->dir.y = old_dir_x * sin(-ROT) + data->player->dir.y * cos(-ROT);
 			data->player->plane.x = data->player->plane.x * cos(-ROT) - data->player->plane.y * sin(-ROT);
 			data->player->plane.y = old_plane_x * sin(-ROT) + data->player->plane.y * cos(-ROT);
 		}
