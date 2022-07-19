@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/19 23:38:35 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 00:51:03 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		data.file_path = ft_strdup(argv[1]);
-		parser(&data);
+		init_data(&data);
 		print_str_node(data.file_data);
-		render_world(&data);
+		// render_world(&data);
 	}
 	else
 		printf("%sWrong number of arguments\n%s./cub3d <path to a map file> [✓]\n%s", RED, GREEN_BG, RESET);

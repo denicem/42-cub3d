@@ -1,34 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 19:45:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/19 23:20:25 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:32:33 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	get_info(t_data *data)
+static bool	line_empty(char *line)
+{
+	while (*line)
+	{
+		if (!ft_isspace(*line))
+			return (false);
+		line++;
+	}
+	return (true);
+}
+
+void	get_data(t_data *data)
 {
 	char	*line;
 
 	line = get_next_line(data->fd);
-	append_str_node(&(data->file_data), new_str_node(line));
+	if (line && !line_empty(line))
+		append_str_node(&(data->file_data), new_str_node(line));
 	while (line)
 	{
 		free(line);
 		line = get_next_line(data->fd);
-		if (line)
+		if (line && !line_empty(line))
 			append_str_node(&data->file_data, new_str_node(line));
 	}
 	free(line);
 }
 
-void	parser(t_data *data)
+void	init_data(t_data *data)
 {
 	data->fd = file_parser(data->file_path);
 	if (data->fd < SUCC)
@@ -41,6 +53,6 @@ void	parser(t_data *data)
 		exit(FAIL);
 	}
 	else if (data->fd >= SUCC)
-		get_info(data);
+		get_data(data);
 	close(data->fd);
 }

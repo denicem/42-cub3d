@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/19 23:35:47 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:32:41 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 ** -----------------------------------------------------------------------------
 ** STRUCTS
 */
+
 typedef struct		s_str_node
 {
 	char				*str;
@@ -136,6 +137,8 @@ typedef struct	s_parser_check
 ** FUNCTIONS
 */
 
+void	init_data(t_data *data);
+void	get_data(t_data *data);
 void	parser(t_data *data);
 int		file_parser(char *filename);
 

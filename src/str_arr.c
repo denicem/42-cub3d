@@ -59,5 +59,5 @@ void	print_str_node(t_str_node *node)
 		printf("%s", node->str);
 		node = node->next;
 	}
-	printf("\n");
+	// printf("\n");
 }
