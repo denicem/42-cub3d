@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 21:39:15 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:43:52 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void hook(void *param)
 	mlx = data->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE)) // Close Window
 		mlx_close_window(mlx);
-	// TODO: Wall collision
 	if (mlx_is_key_down(mlx, MLX_KEY_W)) // Going forward
 	{
 		t_vect	vector;

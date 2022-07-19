@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/15 21:43:27 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:30:59 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct	s_data
 	t_player	*player;
 	char		*file;
 	char		**map;
+	int			side;
 	char		*n_texture;
 	char		*e_texture;
 	char		*s_texture;
