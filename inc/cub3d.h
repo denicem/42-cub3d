@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/19 23:30:59 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:35:47 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,23 @@
 ** -----------------------------------------------------------------------------
 ** STRUCTS
 */
+typedef struct		s_str_node
+{
+	char				*str;
+	struct s_str_node	*next;
+}					t_str_node;
+
+t_str_node	*new_str_node(char *str);
+t_str_node	*get_last_str_node(t_str_node *head);
+t_str_node	*append_str_node(t_str_node **head, t_str_node *new);
+void		print_str_node(t_str_node *node);
 
 typedef struct	s_invec
 {
 	int	x;
 	int	y;
 }				t_invec;
+
 typedef struct	s_vect
 {
 	float	x;
@@ -91,8 +102,11 @@ typedef struct	s_player
 
 typedef struct	s_data
 {
+	int			fd;
+	char		*file_path;
+	t_str_node	*file_data; //temp
+
 	t_player	*player;
-	char		*file;
 	char		**map;
 	int			side;
 	char		*n_texture;
@@ -104,8 +118,6 @@ typedef struct	s_data
 
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-
-	int			**map_int; // temp
 }				t_data;
 
 typedef struct	s_parser_check
@@ -124,6 +136,7 @@ typedef struct	s_parser_check
 ** FUNCTIONS
 */
 
+void	parser(t_data *data);
 int		file_parser(char *filename);
 
 void	raycast(t_data *data);
@@ -134,7 +147,7 @@ void	set_ray_dist(t_ray *ray);
 void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd);
 
 void	draw_vertical_line(int ray, int wallStart, int wallEnd, mlx_image_t *img);
-int get_rgba(int r, int g, int b, int a);
+int		get_rgba(int r, int g, int b, int a);
 
 void	hook(void *param);
 
