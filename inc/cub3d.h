@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 01:32:41 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:59:21 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 typedef struct		s_str_node
 {
 	char				*str;
+	bool				map;
 	struct s_str_node	*next;
 }					t_str_node;
 

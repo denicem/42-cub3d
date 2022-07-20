@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 19:45:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 01:32:33 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 02:15:50 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ static bool	line_empty(char *line)
 	return (true);
 }
 
-void	get_data(t_data *data)
+void	get_data(t_data *data) // TODO: mark lines with only map characters (str map)
 {
 	char	*line;
 
 	line = get_next_line(data->fd);
-	if (line && !line_empty(line))
-		append_str_node(&(data->file_data), new_str_node(line));
 	while (line)
 	{
-		free(line);
-		line = get_next_line(data->fd);
 		if (line && !line_empty(line))
 			append_str_node(&data->file_data, new_str_node(line));
+		free(line);
+		line = get_next_line(data->fd);
 	}
 	free(line);
 }

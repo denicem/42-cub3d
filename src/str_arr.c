@@ -12,6 +12,26 @@
 
 #include "../inc/cub3d.h"
 
+// static bool is_mapchar(int c)
+// {
+// 	if (c == '0' || c == '1' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
+// 		return (true);
+// 	return (false);
+// }
+
+// static bool is_str_map(char *str)
+// {
+// 	if (*str || *str == '\n')
+// 		return (false);
+// 	while (*str)
+// 	{
+// 		if (!ft_isspace(*str) && !is_mapchar(*str))
+// 			return (false);
+// 		str++;
+// 	}
+// 	return (true);
+// }
+
 t_str_node	*new_str_node(char *str)
 {
 	t_str_node	*new;
