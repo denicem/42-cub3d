@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 19:39:48 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:35:19 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define WIDTH 640
 # define HEIGHT 480
+# define PLANE 0.66
 # define MOV 0.07
 # define ROT 0.06
 
@@ -61,7 +62,6 @@ typedef struct		s_str_node
 t_str_node	*new_str_node(char *str);
 t_str_node	*get_last_str_node(t_str_node *head);
 t_str_node	*append_str_node(t_str_node **head, t_str_node *new);
-void		print_str_node(t_str_node *node);
 
 typedef struct	s_invec
 {
@@ -109,6 +109,7 @@ typedef struct	s_data
 	t_str_node	*file_data;
 
 	t_player	*player;
+	t_player	player_start;
 	char		**map;
 	int			map_width;
 	int			map_height;
@@ -146,10 +147,19 @@ void	get_data(t_data *data);
 void	parser(t_data *data);
 void	init_val(t_data *data);
 
+void		create_map(t_data *data);
+bool		is_player_char(int c);
+bool		is_surround_char(int c);
+bool		is_map_char(int c);
+bool		is_str_map(char *str);
+t_str_node	*get_first_map_str(t_str_node *node);
+
+void	set_player(t_data *data);
+
 void	raycast(t_data *data);
 void	init_ray(t_ray *ray, t_data *data, int rayCount);
 void	set_dist(t_ray *ray, t_data *data);
-void	dda(t_ray *ray, int map[10][10]);
+void	dda(t_ray *ray, t_data *data);
 void	set_ray_dist(t_ray *ray);
 void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd);
 
@@ -159,11 +169,9 @@ int		get_rgba(int r, int g, int b, int a);
 
 void	hook(void *param);
 
-// NOTE:
-// [X,Y]
-// Looking North:	DIR[0, -1], PLANE[-0.66, 0]
-// Looking East:	DIR[-1, 0], PLANE[0, 0.66]
-// Looking South:	DIR[0, 1], PLANE[0.66, 0]
-// Looking West:	DIR[1, 0], PLANE[0, -0.66]
+// NOTE: temp funcs - for debuggin' purposes
+void	print_str_node(t_str_node *node);
+void	print_map(t_data *data);
+void	print_player_info(t_data *data);
 
 #endif

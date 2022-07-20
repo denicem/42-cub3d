@@ -6,29 +6,11 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 19:45:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 18:39:20 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:18:07 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-static bool is_mapchar(int c)
-{
-	if (c == '0' || c == '1' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
-		return (true);
-	return (false);
-}
-
-static bool is_str_map(char *str)
-{
-	while (*str)
-	{
-		if (!ft_isspace(*str) && !is_mapchar(*str))
-			return (false);
-		str++;
-	}
-	return (true);
-}
 
 static bool	line_empty(char *line)
 {

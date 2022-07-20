@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/19 23:36:14 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:43:32 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,6 @@
 
 void hook(void *param)
 {
-	int map[10][10] = //temp
-	{
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,0,0,0,0,0,0,1,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,0,0,1,1,1,1},
-		{1,0,1,0,0,0,0,1,0,1},
-		{1,0,1,0,0,0,0,1,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1}
-	};
 	t_data *data = (t_data *) param;
 	mlx_t *mlx;
 
@@ -38,22 +25,19 @@ void hook(void *param)
 		t_vect	vector;
 		vector.x = data->player->pos.x + data->player->dir.x * MOV;
 		vector.y = data->player->pos.y + data->player->dir.y * MOV;
-		if (map[(int)vector.y][(int)vector.x] == 0)
+		if (data->map[(int)vector.y][(int)vector.x] == '0')
 		{
-			
 			data->player->pos.x = vector.x ;
 			data->player->pos.y = vector.y;
 		}
-		
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_A)) // Going sideways left
 	{
 		t_vect	vector;
 		vector.x = data->player->pos.x - data->player->dir.y * MOV;
 		vector.y = data->player->pos.y + data->player->dir.x * MOV;
-		if (map[(int)vector.y][(int)vector.x] == 0)
+		if (data->map[(int)vector.y][(int)vector.x] == '0')
 		{
-			
 			data->player->pos.x = vector.x;
 			data->player->pos.y = vector.y;
 		}
@@ -63,7 +47,7 @@ void hook(void *param)
 		t_vect	vector;
 		vector.x = data->player->pos.x - data->player->dir.x * MOV;
 		vector.y = data->player->pos.y - data->player->dir.y * MOV;
-		if (map[(int)vector.y][(int)vector.x] == 0)
+		if (data->map[(int)vector.y][(int)vector.x] == '0')
 		{
 			
 			data->player->pos.x = vector.x;
@@ -75,23 +59,17 @@ void hook(void *param)
 		t_vect	vector;
 		vector.x = data->player->pos.x + data->player->dir.y * MOV;
 		vector.y = data->player->pos.y - data->player->dir.x * MOV;
-		if (map[(int)vector.y][(int)vector.x] == 0)
+		if (data->map[(int)vector.y][(int)vector.x] == '0')
 		{
-			
 			data->player->pos.x = vector.x;
 			data->player->pos.y = vector.y;
 		}
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_R)) // Resetting to start position
 	{
-		data->player->pos.x = 5;
-		data->player->pos.y = 2;
-
-		data->player->dir.x = 0;
-		data->player->dir.y = 1;
-
-		data->player->plane.x = 0.66;
-		data->player->plane.y = 0;
+		data->player->pos = data->player_start.pos;
+		data->player->dir = data->player_start.dir;
+		data->player->plane = data->player_start.plane;
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT) || mlx_is_key_down(mlx, MLX_KEY_RIGHT)) // Rotate Left or Right
 	{
@@ -113,9 +91,5 @@ void hook(void *param)
 			data->player->plane.y = old_plane_x * sin(-ROT) + data->player->plane.y * cos(-ROT);
 		}
 	}
-	// printf("POS_X: %f, POS_Y: %f\n", data->player->pos.x, data->player->pos.y);
 	raycast(data);
 }
-
-//	NOTE:
-//	if keyhook is used, (rotation) movement not smooth

@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/18 19:27:25 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:54:15 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,13 @@ void	raycast(t_data *data)
 	int		wallStart;
 	int		wallEnd;
 
-	int map[10][10] = //temp
-	{
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,0,0,0,0,0,0,1,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,0,0,1,1,1,1},
-		{1,0,1,0,0,0,0,1,0,1},
-		{1,0,1,0,0,0,0,1,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1}
-	};
 	rayCount = 0;
 	while (rayCount < WIDTH)
 	{	
 		reset_ray(&ray); //resets ray
 		init_ray(&ray, data, rayCount); // initialize starting values for ray
 		set_dist(&ray, data); // setting up step and side_dist for ray
-		dda(&ray, map); //DDA
+		dda(&ray, data); //DDA
 		set_ray_dist(&ray); // defining ray distance to wall
 		set_draw_val(&ray, &height, &wallStart, &wallEnd); // defining height and draw values
 

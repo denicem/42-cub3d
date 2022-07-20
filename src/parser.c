@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 18:45:08 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:26:00 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	parser(t_data *data)
 {
-	print_str_node(data->file_data);
+	(void) data;
 }

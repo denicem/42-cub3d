@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/18 19:28:19 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:48:10 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	set_dist(t_ray *ray, t_data *data)
 	}
 }
 
-void	dda(t_ray *ray, int map[10][10]) // TODO: use map from struct data
+void	dda(t_ray *ray, t_data *data)
 {
 	while (ray->hit == 0)
 	{
@@ -72,7 +72,7 @@ void	dda(t_ray *ray, int map[10][10]) // TODO: use map from struct data
 			ray->pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (map[ray->pos.y][ray->pos.x] >= 1) // TODO: change to ASCII VALUES for official map and change map
+		if (data->map[ray->pos.y][ray->pos.x] == '1')
 			ray->hit = 1;
 	}
 }
