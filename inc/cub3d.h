@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 16:43:58 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:39:48 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,12 @@ typedef struct	s_data
 {
 	int			fd;
 	char		*file_path;
-	t_str_node	*file_data; //temp
+	t_str_node	*file_data;
 
 	t_player	*player;
 	char		**map;
+	int			map_width;
+	int			map_height;
 	int			side;
 	char		*n_texture;
 	char		*e_texture;

@@ -13,7 +13,7 @@
 NAME		= cub3d
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror#-g
+CFLAGS		= -Wall -Wextra -Werror -g
 
 LIBFT_DIR	=	lib/Libft
 MLX_LIB_DIR	=	lib/MLX42
