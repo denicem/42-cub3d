@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 01:59:21 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:43:58 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,10 @@ typedef struct	s_parser_check
 */
 
 void	init_data(t_data *data);
+int		file_parser(char *filename);
 void	get_data(t_data *data);
 void	parser(t_data *data);
-int		file_parser(char *filename);
+void	init_val(t_data *data);
 
 void	raycast(t_data *data);
 void	init_ray(t_ray *ray, t_data *data, int rayCount);
@@ -150,6 +151,7 @@ void	dda(t_ray *ray, int map[10][10]);
 void	set_ray_dist(t_ray *ray);
 void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd);
 
+int		render_world(t_data *data);
 void	draw_vertical_line(int ray, int wallStart, int wallEnd, mlx_image_t *img);
 int		get_rgba(int r, int g, int b, int a);
 

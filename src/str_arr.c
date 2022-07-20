@@ -76,8 +76,12 @@ void	print_str_node(t_str_node *node)
 {
 	while (node)
 	{
+		if (node->map)
+			printf("%s", CYAN);
 		printf("%s", node->str);
+		if (node->map)
+			printf("%s", RESET);
 		node = node->next;
 	}
-	// printf("\n");
+	printf("\n");
 }
