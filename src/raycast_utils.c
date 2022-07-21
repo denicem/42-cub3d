@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 21:48:10 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:31:56 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,16 @@ void	dda(t_ray *ray, t_data *data)
 			ray->side_dist.x += ray->delta_dist.x;
 			ray->pos.x += ray->step.x;
 			ray->side = 0;
+			if (ray->dir.x > 0)
+				ray->side = 1;
 		}
 		else
 		{
 			ray->side_dist.y += ray->delta_dist.y;
 			ray->pos.y += ray->step.y;
-			ray->side = 1;
+			ray->side = 2;
+			if (ray->dir.y > 0)
+				ray->side = 3;
 		}
 		if (data->map[ray->pos.y][ray->pos.x] == '1')
 			ray->hit = 1;
@@ -79,7 +83,7 @@ void	dda(t_ray *ray, t_data *data)
 
 void	set_ray_dist(t_ray *ray)
 {
-	if (ray->side == 0)
+	if (ray->side <= 1)
 		ray->wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
 		ray->wall_dist = ray->side_dist.y - ray->delta_dist.y;

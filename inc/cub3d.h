@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 17:51:24 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:04:47 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,17 @@ typedef struct	s_data
 	int				map_width;
 	int				map_height;
 	int				side;
-	mlx_texture_t	png[4];
 	char			*n_texture;
 	char			*e_texture;
 	char			*s_texture;
 	char			*w_texture;
+	mlx_texture_t	png[4];
 	t_colour		c_colour;
 	t_colour		f_colour;
 
 	mlx_t			*mlx;
-	mlx_texture_t	*m_wall;
 	mlx_image_t		*img;
+	mlx_texture_t	*m_wall;
 }					t_data;
 
 typedef struct	s_parser_check

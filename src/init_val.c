@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_val.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:21:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 18:01:49 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:12:34 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_val(t_data *data)
 	create_map(data);
 	//parse map
 	set_player(data);
-	data->s_texture = ft_strdup("textures/plaster15_alt_d.png");
-	data->n_texture = ft_strdup("textures/tile_blood04.png");
-	data->w_texture = ft_strdup("textures/silent_metall05.png");
-	data->e_texture = ft_strdup("textures/silent_metall05.png");
+	data->s_texture = ft_strdup("textures/bluestone.png");
+	data->n_texture = ft_strdup("textures/colorstone.png");
+	data->w_texture = ft_strdup("textures/greystone.png");
+	data->e_texture = ft_strdup("textures/mossy.png");
 }
