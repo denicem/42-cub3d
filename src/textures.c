@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:16:09 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/21 19:55:53 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:37:17 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static double	find_wall_x(t_data *data, t_ray *ray)
 
 
 	if (ray->side <= 1)
-		wall_x = data->player->pos.x + ray->wall_dist * ray->pos.y;
+		wall_x = data->player->pos.y + ray->wall_dist * ray->dir.y;
 	else
-		wall_x = data->player->pos.x +ray->wall_dist * ray->pos.x;
+		wall_x = data->player->pos.x +ray->wall_dist * ray->dir.x;
 	wall_x -= floor(wall_x);
 	return (wall_x);
 }
@@ -32,7 +32,7 @@ static int	find_texture_x(t_data *data, mlx_texture_t *texture, t_ray *ray)
 
 	tex_x = (int)(find_wall_x(data, ray) * (double) texture->width);
 	if ((ray->side == 0 && ray->dir.x > 0)
-		|| (ray->side == 1 && ray->dir.x < 0))
+		|| (ray->side == 1 && ray->dir.y < 0))
 		tex_x = texture->width - tex_x - 1;
 	return (tex_x);
 }
