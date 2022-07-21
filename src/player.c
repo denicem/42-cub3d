@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:09:48 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 00:41:57 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:29:33 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,10 @@ static void	set_dir_ns(t_data *data, char c)
 
 static void	set_player_pos_dir(t_data *data, int x, int y, char c)
 {
-	data->player->pos.x = x;
-	data->player->pos.y = y;
+	data->player->pos.x = x + 0.5;
+	data->player->pos.y = y + 0.5;
 	set_dir_ns(data, c);
 	set_dir_ew(data, c);
-	// data->player_start.pos.x = data->player->pos.x;
-	// data->player_start.pos.y = data->player->pos.y;
-	// data->player_start.dir.x = data->player->dir.x;
-	// data->player_start.dir.y = data->player->dir.y;
-	// data->player_start.plane.x = data->player->plane.x;
-	// data->player_start.plane.y = data->player->plane.y;
 	data->player_start.pos = data->player->pos;
 	data->player_start.dir = data->player->dir;
 	data->player_start.plane = data->player->plane;

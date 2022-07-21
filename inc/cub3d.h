@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 00:35:19 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:21:45 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 # define FILE_NOT_FOUND -1
 # define FILENAME_NOT_CORRECT -2
 
-# define WIDTH 640
-# define HEIGHT 480
-# define PLANE 0.66
-# define MOV 0.07
-# define ROT 0.06
+# define WIDTH 1920
+# define HEIGHT 1080
+# define PLANE 1.66
+# define MOV 0.055
+# define ROT 0.022
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
