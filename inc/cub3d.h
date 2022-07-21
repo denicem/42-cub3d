@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 20:04:47 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:46:17 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define HEIGHT 1080
 # define PLANE 1.66
 # define MOV 0.055
-# define ROT 0.022
+# define ROT 0.033
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
