@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/20 22:54:15 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:30:04 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	raycast(t_data *data)
 		set_draw_val(&ray, &height, &wallStart, &wallEnd); // defining height and draw values
 
 		//draw ONE vertical line and move to next ray
-		draw_vertical_line(rayCount, wallStart, wallEnd, data->img);
+		draw_vertical_line(rayCount, wallStart, wallEnd, data, &ray);
 		rayCount++;
 	}
 }

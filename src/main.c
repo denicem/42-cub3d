@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 00:43:52 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:50:09 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char *argv[])
 		print_str_node(data.file_data);
 		print_map(&data);
 		print_player_info(&data);
+		get_textures(&data);
 		render_world(&data);
 	}
 	else
