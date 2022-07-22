@@ -3,20 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 00:43:32 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/22 18:38:33 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	jumpscare()
+{
+	int random_num;
+	
+	random_num = random() % 1000;
+	if(random_num == 15)
+	{
+		random_num *= (random() % 26);
+		if (random_num % 2)
+			system("afplay textures/jumpscare1.mp3 &");
+		else 
+			system("afplay textures/jumpscare2.mp3 &");
+	}
+}
 
 void hook(void *param)
 {
 	t_data *data = (t_data *) param;
 	mlx_t *mlx;
 
+	jumpscare();
 	mlx = data->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE)) // Close Window
 		mlx_close_window(mlx);
