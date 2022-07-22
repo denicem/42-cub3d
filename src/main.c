@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 17:50:09 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:57:35 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char *argv[])
 		render_world(&data);
 	}
 	else
-		printf("%sWrong number of arguments\n%s./cub3d <path to a map file> [✓]\n%s", RED, GREEN_BG, RESET);
+		printf("%sToo many arguments\n%s./cub3d <path to amap file>[✓]\n%s",
+			RED, GREEN_BG, RESET);
 	return (0);
 }

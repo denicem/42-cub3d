@@ -6,22 +6,20 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:16:09 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/22 17:18:03 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:39:59 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-
 static double	find_wall_x(t_data *data, t_ray *ray)
 {
 	double	wall_x;
 
-
 	if (ray->side <= 1)
 		wall_x = data->player->pos.y + ray->wall_dist * ray->dir.y;
 	else
-		wall_x = data->player->pos.x +ray->wall_dist * ray->dir.x;
+		wall_x = data->player->pos.x + ray->wall_dist * ray->dir.x;
 	wall_x -= floor(wall_x);
 	return (wall_x);
 }

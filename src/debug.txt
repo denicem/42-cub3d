@@ -1,0 +1,26 @@
+
+// print statements for debugging purposes
+// printf("OLD\n");
+// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
+// printf("CAMERA_X: %f\n", camera_x);
+// printf("CURR_POS[x][y]: %d %d\n", (int) curr_pos.x, (int) curr_pos.y);
+// printf("RAYDIR[x][y]: %f %f\n", raydir.x, raydir.y);
+// printf("DELTA_DIST[x][y]: %f %f\n", delta_dist.x, delta_dist.y);
+// printf("SIDE_DIST[x][y]: %f %f\n", side_dist.x, side_dist.y);
+// printf("STEP[x][y]: %d %d\n", (int) step.x, (int) step.y);
+// printf("HIT? %d, SIDE: %d\n", hit, side);
+// printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", perpWall_dist, height_old, drawStart, drawEnd);
+// printf("X: %d\n\n", raycount);
+
+// printf("\nNEW\n");
+// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", ray.side_dist.x, ray.delta_dist.x, ray.side_dist.y, ray.delta_dist.y);
+// printf("CAMERA_X: %f\n",ray.camera);
+// printf("CURR_POS[x][y]: %d %d\n", (int) ray.pos.x, (int) ray.pos.y);
+// printf("RAYDIR[x][y]: %f %f\n", ray.dir.x, ray.dir.y);
+// printf("DELTA_DIST[x][y]: %f %f\n", ray.delta_dist.x, ray.delta_dist.y);
+// printf("SIDE_DIST[x][y]: %f %f\n", ray.side_dist.x, ray.side_dist.y);
+// printf("STEP[x][y]: %d %d\n", (int) ray.step.x, (int) ray.step.y);
+// printf("HIT? %d, SIDE: %d\n", ray.hit, ray.side);
+// printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", ray.wall_dist, height, wallstart, wallend);
+// printf("X: %d\n\n", raycount);
+// printf("OLD: %f %f\nNEW: %f %f\n", side_dist.x, side_dist.y, ray.side_dist.x, ray.side_dist.y);

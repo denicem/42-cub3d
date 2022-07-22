@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 16:45:34 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:35:40 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,53 +31,50 @@ static void reset_ray(t_ray *ray)
 	ray->wall_dist = 0;
 }
 
-void	raycast(t_data *data)
+void	dda(t_ray *ray, t_data *data)
 {
-	t_ray	ray;
-	int		rayCount;
-	int		height;
-	int		wallStart;
-	int		wallEnd;
-
-	rayCount = 0;
-	while (rayCount < WIDTH)
+	while (ray->hit == 0)
 	{
-		reset_ray(&ray); //resets ray
-		init_ray(&ray, data, rayCount); // initialize starting values for ray
-		set_dist(&ray, data); // setting up step and side_dist for ray
-		dda(&ray, data); //DDA
-		set_ray_dist(&ray); // defining ray distance to wall
-		set_draw_val(&ray, &height, &wallStart, &wallEnd); // defining height and draw values
-		
-		//draw ONE vertical line and move to next ray
-		draw_vertical_line(rayCount, wallStart, wallEnd, data, &ray);
-		rayCount++;
+		if (ray->side_dist.x < ray->side_dist.y)
+		{
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->pos.x += ray->step.x;
+			ray->side = 0;
+			if (ray->dir.x > 0)
+				ray->side = 1;
+		}
+		else
+		{
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->pos.y += ray->step.y;
+			ray->side = 2;
+			if (ray->dir.y > 0)
+				ray->side = 3;
+		}
+		if (data->map[ray->pos.y][ray->pos.x] == '1')
+			ray->hit = 1;
 	}
 }
 
-// print statements for debugging purposes
-// printf("OLD\n");
-// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", side_dist.x, delta_dist.x, side_dist.y, delta_dist.y);
-// printf("CAMERA_X: %f\n", camera_x);
-// printf("CURR_POS[x][y]: %d %d\n", (int) curr_pos.x, (int) curr_pos.y);
-// printf("RAYDIR[x][y]: %f %f\n", raydir.x, raydir.y);
-// printf("DELTA_DIST[x][y]: %f %f\n", delta_dist.x, delta_dist.y);
-// printf("SIDE_DIST[x][y]: %f %f\n", side_dist.x, side_dist.y);
-// printf("STEP[x][y]: %d %d\n", (int) step.x, (int) step.y);
-// printf("HIT? %d, SIDE: %d\n", hit, side);
-// printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", perpWall_dist, height_old, drawStart, drawEnd);
-// printf("X: %d\n\n", rayCount);
+void	raycast(t_data *data)
+{
+	t_ray	ray;
+	int		raycount;
+	int		height;
+	int		wallstart;
+	int		wallend;
 
-// printf("\nNEW\n");
-// printf("sidex: %f deltax: %f\nsidey: %f deltay: %f\n\n", ray.side_dist.x, ray.delta_dist.x, ray.side_dist.y, ray.delta_dist.y);
-// printf("CAMERA_X: %f\n",ray.camera);
-// printf("CURR_POS[x][y]: %d %d\n", (int) ray.pos.x, (int) ray.pos.y);
-// printf("RAYDIR[x][y]: %f %f\n", ray.dir.x, ray.dir.y);
-// printf("DELTA_DIST[x][y]: %f %f\n", ray.delta_dist.x, ray.delta_dist.y);
-// printf("SIDE_DIST[x][y]: %f %f\n", ray.side_dist.x, ray.side_dist.y);
-// printf("STEP[x][y]: %d %d\n", (int) ray.step.x, (int) ray.step.y);
-// printf("HIT? %d, SIDE: %d\n", ray.hit, ray.side);
-// printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", ray.wall_dist, height, wallStart, wallEnd);
-// printf("X: %d\n\n", rayCount);
-
-// printf("OLD: %f %f\nNEW: %f %f\n", side_dist.x, side_dist.y, ray.side_dist.x, ray.side_dist.y);
+	raycount = 0;
+	while (raycount < WIDTH)
+	{
+		reset_ray(&ray); //resets ray
+		init_ray(&ray, data, raycount); // initialize starting values for ray
+		set_dist(&ray, data); // setting up step and side_dist for ray
+		dda(&ray, data); //DDA
+		set_ray_dist(&ray); // defining ray distance to wall
+		set_draw_val(&ray, &height, &wallstart, &wallend); // defining height and draw values
+		//draw ONE vertical line and move to next ray
+		draw_vertical_line(raycount, wallstart, wallend, data, &ray);
+		raycount++;
+	}
+}

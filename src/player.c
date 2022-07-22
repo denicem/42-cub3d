@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:09:48 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 16:50:13 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:58:37 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	set_player(t_data *data)
 			if (is_player_char(data->map[y][x]))
 			{
 				if (player_found)
-					return ; // TODO: return value: too many player position
+					return; // TODO: return value: too many player position
 				set_player_pos_dir(data, x, y, data->map[y][x]);
 				data->map[y][x] = '0';
 				player_found = true;

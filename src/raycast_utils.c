@@ -6,12 +6,11 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 18:30:50 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:54:19 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
 
 void	init_ray(t_ray *ray, t_data *data, int rayCount)
 {
@@ -28,57 +27,41 @@ void	init_ray(t_ray *ray, t_data *data, int rayCount)
 		ray->delta_dist.y = fabs(1.0 / ray->dir.y);
 }
 
-void	set_dist(t_ray *ray, t_data *data)
+void	calculate_dist(t_ray *ray, t_data *data)
 {
-	ray->pos.x = (int)data->player->pos.x;
-	ray->pos.y = (int)data->player->pos.y;
 	if (ray->dir.x < 0)
 	{
 		ray->step.x = -1;
-		ray->side_dist.x = (data->player->pos.x - ray->pos.x) * ray->delta_dist.x;
+		ray->side_dist.x = (data->player->pos.x - ray->pos.x)
+			* ray->delta_dist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->side_dist.x = (ray->pos.x + 1.0 - data->player->pos.x) * ray->delta_dist.x;
+		ray->side_dist.x = (ray->pos.x + 1.0 - data->player->pos.x)
+			* ray->delta_dist.x;
 	}
 	if (ray->dir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->side_dist.y = (data->player->pos.y - ray->pos.y) * ray->delta_dist.y;
+		ray->side_dist.y = (data->player->pos.y - ray->pos.y)
+			* ray->delta_dist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->side_dist.y = (ray->pos.y + 1.0 - data->player->pos.y) * ray->delta_dist.y;
+		ray->side_dist.y = (ray->pos.y + 1.0 - data->player->pos.y)
+			* ray->delta_dist.y;
 	}
-	ray->pos.x = (int)data->player->pos.x;
-	ray->pos.y = (int)data->player->pos.y;
 }
 
-void	dda(t_ray *ray, t_data *data)
+void	set_dist(t_ray *ray, t_data *data)
 {
-	while (ray->hit == 0)
-	{
-		if (ray->side_dist.x < ray->side_dist.y)
-		{
-			ray->side_dist.x += ray->delta_dist.x;
-			ray->pos.x += ray->step.x;
-			ray->side = 0;
-			if (ray->dir.x > 0)
-				ray->side = 1;
-		}
-		else
-		{
-			ray->side_dist.y += ray->delta_dist.y;
-			ray->pos.y += ray->step.y;
-			ray->side = 2;
-			if (ray->dir.y > 0)
-				ray->side = 3;
-		}
-		if (data->map[ray->pos.y][ray->pos.x] == '1')
-			ray->hit = 1;
-	}
+	ray->pos.x = (int)data->player->pos.x;
+	ray->pos.y = (int)data->player->pos.y;
+	calculate_dist(ray, data);
+	ray->pos.x = (int)data->player->pos.x;
+	ray->pos.y = (int)data->player->pos.y;
 }
 
 void	set_ray_dist(t_ray *ray)
@@ -89,9 +72,9 @@ void	set_ray_dist(t_ray *ray)
 		ray->wall_dist = ray->side_dist.y - ray->delta_dist.y;
 }
 
-void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd)
+void	set_draw_val(t_ray *ray, int *height, int *wallStart, int *wallEnd)
 {
-	*height = (int) (HEIGHT * 0.5 / ray->wall_dist);
+	*height = (int)(HEIGHT * 0.5 / ray->wall_dist);
 	*wallStart = -(*height) / 2 + HEIGHT / 2;
 	if (wallStart < 0)
 		wallStart = 0;
