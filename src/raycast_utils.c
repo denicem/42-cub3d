@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 17:50:11 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:57:55 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd)
 {
 	*height = (int) (HEIGHT * 0.5 / ray->wall_dist);
 	*wallStart = -(*height) / 2 + HEIGHT / 2;
-	if (*wallStart < 0)
-		*wallStart = 0;
+	if (wallStart < 0)
+		wallStart = 0;
 	*wallEnd = (*height) / 2 + HEIGHT / 2;
 	if (*wallEnd >= HEIGHT)
 		*wallEnd = HEIGHT - 1;
