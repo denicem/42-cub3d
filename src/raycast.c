@@ -6,11 +6,14 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 17:30:04 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:45:34 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+// DEBUG
+#include <time.h>
 
 static void reset_ray(t_ray *ray)
 {
@@ -38,14 +41,14 @@ void	raycast(t_data *data)
 
 	rayCount = 0;
 	while (rayCount < WIDTH)
-	{	
+	{
 		reset_ray(&ray); //resets ray
 		init_ray(&ray, data, rayCount); // initialize starting values for ray
 		set_dist(&ray, data); // setting up step and side_dist for ray
 		dda(&ray, data); //DDA
 		set_ray_dist(&ray); // defining ray distance to wall
 		set_draw_val(&ray, &height, &wallStart, &wallEnd); // defining height and draw values
-
+		
 		//draw ONE vertical line and move to next ray
 		draw_vertical_line(rayCount, wallStart, wallEnd, data, &ray);
 		rayCount++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 19:31:56 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:50:11 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	init_ray(t_ray *ray, t_data *data, int rayCount)
 		ray->delta_dist.y = INFINITY;
 	else
 		ray->delta_dist.y = fabs(1.0 / ray->dir.y);
-
 }
 
 void	set_dist(t_ray *ray, t_data *data)
 {
-
 	ray->pos.x = (int)data->player->pos.x;
 	ray->pos.y = (int)data->player->pos.y;
 	if (ray->dir.x < 0)
@@ -54,6 +52,8 @@ void	set_dist(t_ray *ray, t_data *data)
 		ray->step.y = 1;
 		ray->side_dist.y = (ray->pos.y + 1.0 - data->player->pos.y) * ray->delta_dist.y;
 	}
+	ray->pos.x = (int)data->player->pos.x;
+	ray->pos.y = (int)data->player->pos.y;
 }
 
 void	dda(t_ray *ray, t_data *data)
@@ -93,8 +93,8 @@ void	set_draw_val(t_ray *ray, int *height, int *wallStart, int* wallEnd)
 {
 	*height = (int) (HEIGHT * 0.5 / ray->wall_dist);
 	*wallStart = -(*height) / 2 + HEIGHT / 2;
-	if (wallStart < 0)
-		wallStart = 0;
+	if (*wallStart < 0)
+		*wallStart = 0;
 	*wallEnd = (*height) / 2 + HEIGHT / 2;
 	if (*wallEnd >= HEIGHT)
 		*wallEnd = HEIGHT - 1;

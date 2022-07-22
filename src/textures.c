@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:16:09 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/21 21:37:17 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:18:03 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	insert_textures(t_data *data, int x, int draw_start, int draw_end, t_ray *r
 		texture_pos += step;
 		if (draw_start >= 0 && draw_start <= HEIGHT)
 		{
+			// mlx_put_pixel(data->img, x, draw_start, *(uint32_t *)&texture->pixels[(tex_y * texture->height + tex_x) * 4]);
 			ft_memcpy(&data->img->pixels[(draw_start
 					* data->img->width + x) * 4],
 				&texture->pixels[(tex_y * texture->height + tex_x) * 4], 4);
