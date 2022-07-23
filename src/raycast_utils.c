@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:19:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 21:54:19 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:35:49 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	set_draw_val(t_ray *ray, int *height, int *wallStart, int *wallEnd)
 {
 	*height = (int)(HEIGHT * 0.5 / ray->wall_dist);
 	*wallStart = -(*height) / 2 + HEIGHT / 2;
-	if (wallStart < 0)
-		wallStart = 0;
+	// if (*wallStart < 0)
+	// 	*wallStart = 0;
 	*wallEnd = (*height) / 2 + HEIGHT / 2;
-	if (*wallEnd >= HEIGHT)
-		*wallEnd = HEIGHT - 1;
+	// if (*wallEnd >= HEIGHT)
+	// 	*wallEnd = HEIGHT - 1;
 }

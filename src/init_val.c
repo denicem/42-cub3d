@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_val.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:21:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 21:43:00 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 13:46:03 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,4 @@ void	init_val(t_data *data)
 	create_map(data);
 	//parse map
 	set_player(data);
-	data->n_texture = ft_strdup("textures/plaster15_alt_d.png");
-	data->s_texture = ft_strdup("textures/plaster15_alt_d.png");
-	data->w_texture = ft_strdup("textures/silent_metall05.png");
-	data->e_texture = ft_strdup("textures/silent_metall05.png");
 }

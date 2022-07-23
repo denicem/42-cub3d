@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 20:43:51 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:18:53 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,10 @@ typedef struct s_data
 	char			**map;
 	int				map_width;
 	int				map_height;
-	int				side;
-	char			*n_texture;
-	char			*e_texture;
-	char			*s_texture;
-	char			*w_texture;
-	mlx_texture_t	png[4];
+	char			**texture_paths;
 	t_colour		c_colour;
 	t_colour		f_colour;
+	mlx_texture_t	png[4];
 
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -135,7 +131,6 @@ typedef struct s_parser_check
 	bool	w_identifier;
 	bool	c_identifier;
 	bool	f_identifier;
-	bool	map_identifier;
 }				t_parser_check;
 
 /*
@@ -165,16 +160,17 @@ void		dda(t_ray *ray, t_data *data);
 void		set_ray_dist(t_ray *ray);
 void		set_draw_val(t_ray *ray, int *height, int *wallStart, int *wallEnd);
 
-int			render_world(t_data *data);
-void		draw_vertical_line(int ray_count, int wallStart, int wallEnd, t_data *data, t_ray *ray);
-int			get_rgba(int r, int g, int b, int a);
+int		render_world(t_data *data);
+void	draw_vertical_line(int ray_count, int wallStart, int wallEnd, t_data *data, t_ray *ray);
+int		get_rgba(t_data *data, int c, int a);
 
 void		hook(void *param);
 
 // NOTE: temp funcs - for debuggin' purposes
-void		print_str_node(t_str_node *node);
-void		print_map(t_data *data);
-void		print_player_info(t_data *data);
+void	print_str_node(t_str_node *node);
+void	print_map(t_data *data);
+void	print_player_info(t_data *data);
+void	print_map_identifier(t_data *data);
 
 // TEXTURES
 

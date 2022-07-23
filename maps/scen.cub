@@ -1,10 +1,11 @@
-NO ./textures/NO.xpm42
-SO ./textures/SO.xpm42
-WE ./textures/WE.xpm42
-EA ./textures/EA.xpm42
+NO ./textures/bluestone.png
+SO ./textures/colorstone.png
+WE textures/greystone.png
+EA textures/wood.png
 
-F 60,255,100
-C 125,155,200
+F 18,18,18
+C 89,44,39
+
 
 1111111111111111111111111
 1000000000111000000000001
@@ -12,3 +13,5 @@ C 125,155,200
 10000000000N0000000000001
 1000000000000000000000001
 1111111111111111111111111
+
+

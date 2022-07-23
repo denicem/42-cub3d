@@ -28,6 +28,7 @@ SRCS		=	$(shell find $(SRC_DIR) -name "*.c" -execdir echo {} ";")
 
 OBJ_DIR		=	./obj
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+DEPS		=	$(OBJS:.o=.d)
 
 # ***************************************************************************** #
 #	COLOURS																		#
@@ -49,6 +50,8 @@ RESET	= \033[0m
 # ***************************************************************************** #
 
 all: $(NAME)
+
+-include $(DEPS)
 
 $(NAME): $(OBJS)
 	@printf "$(BLUE)Linking objects and libraries to a binary file.\r"

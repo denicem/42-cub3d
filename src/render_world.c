@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_world.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:17:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 20:37:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:17:38 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,16 @@ void	draw_vertical_line(int ray_count, int wallStart, int wallEnd, t_data *data,
 	while (i < HEIGHT)
 	{
 		if (i < wallStart)
-			mlx_put_pixel(data->img, ray_count, i, get_rgba(18, 18, 18, 255));
-		// if (i >= wallStart && i <= wallEnd)
-		// 	mlx_put_pixel(img, ray, i, get_rgba(255, 0, 0, 128));
+			mlx_put_pixel(data->img, ray_count, i, get_rgba(data, 1, 255));
 		if (i > wallEnd)
-			mlx_put_pixel(data->img, ray_count, i, get_rgba(89, 44, 39, 180));
+			mlx_put_pixel(data->img, ray_count, i, get_rgba(data, 0, 180));
 		i++;
 	}
 }
 
 int	render_world(t_data *data)
 {
-	data->mlx = mlx_init(WIDTH, HEIGHT, "Hypercub3d", true);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "Hypercub3d", false);
 	if (!(data->mlx))
 		return (1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
