@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 20:05:39 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:07:55 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_data
 	t_colour		c_colour;
 	t_colour		f_colour;
 	mlx_texture_t	png[4];
+	t_ray			ray;
 
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -167,24 +168,25 @@ void		dda(t_ray *ray, t_data *data);
 void		set_ray_dist(t_ray *ray);
 void		set_draw_val(t_ray *ray, int *height, int *wallStart, int *wallEnd);
 
-int		render_world(t_data *data);
-void	draw_vertical_line(int ray_count, int wallStart, int wallEnd, t_data *data, t_ray *ray);
-int		get_rgba(t_data *data, int c, int a);
+int			render_world(t_data *data);
+void		draw_vertical_line(int ray_count, int wallStart,
+				int wallEnd, t_data *data);
+int			get_rgba(t_data *data, int c, int a);
 
 void		hook(void *param);
 
 // NOTE: temp funcs - for debuggin' purposes
-void	print_str_node(t_str_node *node);
-void	print_map(t_data *data);
-void	print_player_info(t_data *data);
-void	print_map_identifier(t_data *data);
+void		print_str_node(t_str_node *node);
+void		print_map(t_data *data);
+void		print_player_info(t_data *data);
+void		print_map_identifier(t_data *data);
 
 // TEXTURES
 
-void		insert_textures(t_data *info, int x, int draw_start, int draw_end, t_ray *ray);
+void		insert_textures(t_data *info, int x, int draw_start, int draw_end);
 int			get_textures(t_data *data);
 
-void	exit_error(t_data *data, char *msg, int error_code);
-void	free_data(t_data *data);
+void		exit_error(t_data *data, char *msg, int error_code);
+void		free_data(t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:31:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 14:13:20 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:09:33 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	print_map_identifier(t_data *data)
 	printf("SO %s\n", data->texture_paths[3]);
 	printf("EA %s\n", data->texture_paths[0]);
 	printf("WE %s\n", data->texture_paths[1]);
-	printf("C %d, %d, %d\n", data->c_colour.red, data->c_colour.green, data->c_colour.blue);
-	printf("F %d, %d, %d\n", data->f_colour.red, data->f_colour.green, data->f_colour.blue);
+	printf("C %d, %d, %d\n", data->c_colour.red,
+		data->c_colour.green, data->c_colour.blue);
+	printf("F %d, %d, %d\n", data->f_colour.red,
+		data->f_colour.green, data->f_colour.blue);
 }

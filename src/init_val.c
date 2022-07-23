@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_val.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:21:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 20:53:35 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:08:30 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void check_player(t_data *data)
+static void	check_player(t_data *data)
 {
 	int	count;
 	int	x;

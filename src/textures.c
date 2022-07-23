@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:16:09 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/23 14:31:41 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:12:05 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	get_textures(t_data *data)
 	return (1);
 }
 
-void	insert_textures(t_data *data, int x, int draw_start, int draw_end, t_ray *ray)
+void	insert_textures(t_data *data, int x, int draw_start, int draw_end)
 {
 	mlx_texture_t	*texture;
 	int				tex_x;
@@ -60,8 +60,8 @@ void	insert_textures(t_data *data, int x, int draw_start, int draw_end, t_ray *r
 	double			step;
 	double			texture_pos;
 
-	texture = &data->png[ray->side];
-	tex_x = find_texture_x(data, texture, ray);
+	texture = &data->png[data->ray.side];
+	tex_x = find_texture_x(data, texture, &data->ray);
 	step = (1.0 * texture->height) / (draw_end - draw_start);
 	texture_pos = (draw_start - HEIGHT / 2 + (draw_end - draw_start) / 2)
 		* step;
@@ -71,7 +71,6 @@ void	insert_textures(t_data *data, int x, int draw_start, int draw_end, t_ray *r
 		texture_pos += step;
 		if (draw_start >= 0 && draw_start <= HEIGHT)
 		{
-			// mlx_put_pixel(data->img, x, draw_start, *(uint32_t *)&texture->pixels[(tex_y * texture->height + tex_x) * 4]);
 			ft_memcpy(&data->img->pixels[(draw_start
 					* data->img->width + x) * 4],
 				&texture->pixels[(tex_y * texture->height + tex_x) * 4], 4);

@@ -24,3 +24,6 @@
 // printf("WALL_DIST: %f, HEIGHT: %d, DRAW_START: %d, DRAW_END: %d\n", ray.wall_dist, height, wallstart, wallend);
 // printf("X: %d\n\n", raycount);
 // printf("OLD: %f %f\nNEW: %f %f\n", side_dist.x, side_dist.y, ray.side_dist.x, ray.side_dist.y);
+
+// mlx_put_pixel(data->img, x, draw_start, *(uint32_t *)&texture->pixels[(tex_y * texture->height + tex_x) * 4]); turns color into red in the textures
+
