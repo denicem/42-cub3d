@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:05:35 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 22:13:10 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:05:46 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	exit_error(t_data *data, char *msg, int error_code)
 	printf("%sError:%s\n", RED, RESET);
 	if (msg)
 		printf("%s%s%s\n", RED, msg, RESET);
-	// free data
+	// free_data(data);
 	exit(error_code);
 }
