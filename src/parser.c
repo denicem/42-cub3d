@@ -6,13 +6,13 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 15:46:14 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:34:43 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-bool check_map_identifier(t_parser_check *check)
+static bool	check_map_identifier(t_parser_check *check)
 {
 	if (!check->n_identifier || !check->e_identifier || !check->s_identifier
 		|| !check->w_identifier || !check->c_identifier
@@ -21,87 +21,28 @@ bool check_map_identifier(t_parser_check *check)
 	return (true);
 }
 
-static char	**get_directions()
-{
-	char	**dir;
-
-	dir = ft_calloc_str_arr(5);
-	if (!dir)
-		return (NULL);
-	dir[0] = ft_strdup("EA");
-	dir[1] = ft_strdup("WE");
-	dir[2] = ft_strdup("NO");
-	dir[3] = ft_strdup("SO");
-	return (dir);
-}
-
-void	texture_identifier(t_data *data, char *dir, char *path)
-{
-	int		i;
-	char	**directions;
-
-	if (open(path, O_RDONLY) == FILE_NOT_FOUND)
-		exit(FAIL); //fail
-	directions = get_directions();
-	if (!directions)
-		exit(FAIL);
-	i = 0;
-	while (i < 4 && directions[i])
-	{
-		if (!ft_strcmp(directions[i], dir))
-		{
-			data->texture_paths[i] = ft_strdup(path);
-			ft_free_str_arr(&directions);
-			return ;
-		}
-		i++;
-	}
-	ft_free_str_arr(&directions);
-	exit(FAIL);
-}
-
-void color_identifier(t_data *data, char c, char *c_code)
-{
-	char **rgb;
-
-	// check syntax of color codes? (only digits and comma ',')
-	rgb = ft_split(c_code, ',');
-	// check if rgb is more than three elements and if number exceeds 255
-	if (c == 'C')
-	{
-		data->c_colour.red = ft_atoi(rgb[0]);
-		data->c_colour.green = ft_atoi(rgb[1]);
-		data->c_colour.blue = ft_atoi(rgb[2]);
-	}
-	else if (c == 'F')
-	{
-		data->f_colour.red = ft_atoi(rgb[0]);
-		data->f_colour.green = ft_atoi(rgb[1]);
-		data->f_colour.blue = ft_atoi(rgb[2]);
-	}
-	else
-		// ERROR invalid map identifier
-		exit(FAIL);
-	free(rgb);
-}
-
 void	check_curr_str(t_data *data, char *str)
 {
-	char **str_arr;
+	char	**str_arr;
 
-	str_arr = ft_split_ws(str); // TODO: implement split for just whitespaces
+	str_arr = ft_split_ws(str);
+	if (!str_arr)
+		exit_error(data, "Malloc failed.", FAIL);
 	if (ft_strlen_arr((const char **) str_arr) != 2)
-		return ; // FAIL invalid map identifiers
+		exit_error(data, "Map identifier invalid.", FAIL);
 	if (ft_strlen(str_arr[0]) == 2)
 		texture_identifier(data, str_arr[0], str_arr[1]);
 	else if (ft_strlen(str_arr[0]) == 1)
 		color_identifier(data, *str_arr[0], str_arr[1]);
 	else
-		exit(FAIL);
-	free(str_arr);
+	{
+		ft_free_str_arr(&str_arr);
+		exit_error(data, "Map identifier invalid.", FAIL);
+	}
+	ft_free_str_arr(&str_arr);
 }
 
-void init_parser_check(t_parser_check *check)
+void	init_parser_check(t_parser_check *check)
 {
 	check->n_identifier = false;
 	check->s_identifier = false;
@@ -113,18 +54,15 @@ void init_parser_check(t_parser_check *check)
 
 void	parser(t_data *data)
 {
-	t_parser_check	check;
-	t_str_node		*curr_node;
+	t_str_node	*curr_node;
 
-	(void) data;
-	init_parser_check(&check);
+	init_parser_check(&data->check);
 	curr_node = data->file_data;
 	data->texture_paths = ft_calloc(4, sizeof(char *));
-	// while (!check_map_identifier(&check))
-	while (!curr_node->map)
+	while (!check_map_identifier(&data->check))
 	{
-		if (curr_node->map && !check_map_identifier(&check))
-			exit(FAIL); // FAIL!! no map before the map_identifiers
+		if (curr_node->map && !check_map_identifier(&data->check))
+			exit_error(data, "Map cannot be first.", FAIL);
 		check_curr_str(data, curr_node->str);
 		curr_node = curr_node->next;
 	}

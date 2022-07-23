@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 14:18:53 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:08:08 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define SUCC 1
-# define FAIL 0
+# define SUCC 0
+# define FAIL 1
 # define FILE_NOT_FOUND -1
 # define FILENAME_NOT_CORRECT -2
 
@@ -62,6 +62,16 @@ typedef struct s_str_node
 t_str_node	*new_str_node(char *str);
 t_str_node	*get_last_str_node(t_str_node *head);
 t_str_node	*append_str_node(t_str_node **head, t_str_node *new);
+
+typedef struct s_parser_check
+{
+	bool	n_identifier;
+	bool	e_identifier;
+	bool	s_identifier;
+	bool	w_identifier;
+	bool	c_identifier;
+	bool	f_identifier;
+}				t_parser_check;
 
 typedef struct s_invec
 {
@@ -121,17 +131,9 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	*m_wall;
-}					t_data;
 
-typedef struct s_parser_check
-{
-	bool	n_identifier;
-	bool	e_identifier;
-	bool	s_identifier;
-	bool	w_identifier;
-	bool	c_identifier;
-	bool	f_identifier;
-}				t_parser_check;
+	t_parser_check	check;
+}					t_data;
 
 /*
 ** -----------------------------------------------------------------------------
@@ -143,6 +145,8 @@ int			file_parser(char *filename);
 void		get_data(t_data *data);
 void		parser(t_data *data);
 void		init_val(t_data *data);
+void		texture_identifier(t_data *data, char *dir, char *path);
+void		color_identifier(t_data *data, char c, char *c_code);
 
 void		create_map(t_data *data);
 bool		is_player_char(int c);
@@ -176,4 +180,7 @@ void	print_map_identifier(t_data *data);
 
 void		insert_textures(t_data *info, int x, int draw_start, int draw_end, t_ray *ray);
 int			get_textures(t_data *data);
+
+void	exit_error(t_data *data, char *msg, int error_code);
+
 #endif
