@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 18:08:08 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:05:39 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ typedef struct s_str_node
 {
 	char				*str;
 	bool				map;
+	bool				empty;
 	struct s_str_node	*next;
 }					t_str_node;
 
 t_str_node	*new_str_node(char *str);
 t_str_node	*get_last_str_node(t_str_node *head);
 t_str_node	*append_str_node(t_str_node **head, t_str_node *new);
+void		del_last_node(t_str_node **head);
+void		free_str_node(t_str_node **node);
 
 typedef struct s_parser_check
 {
@@ -182,5 +185,6 @@ void		insert_textures(t_data *info, int x, int draw_start, int draw_end, t_ray *
 int			get_textures(t_data *data);
 
 void	exit_error(t_data *data, char *msg, int error_code);
+void	free_data(t_data *data);
 
 #endif

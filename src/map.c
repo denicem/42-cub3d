@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:59:08 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/21 00:31:02 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:38:00 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	copy_filemap(t_data *data, t_str_node *map)
 	while (y < data->map_height && map)
 	{
 		data->map[y] = ft_calloc(data->map_width + 1, sizeof(char));
-		// free if alloc failed
+		if (!(data->map[y]))
+			exit_error(data, "Malloc failed.", FAIL);
 		x = 0;
 		while (x < data->map_width && map->str[x])
 		{
@@ -46,6 +47,8 @@ static void	set_map_size(t_data *data, t_str_node *node)
 	height = 0;
 	while (node)
 	{
+		if (node->empty)
+			exit_error(data, "Empty line between map.", FAIL);
 		curr_wid = ft_strlen(node->str);
 		if (node->str[curr_wid - 1] == '\n')
 			curr_wid--;
@@ -66,6 +69,6 @@ void	create_map(t_data *data)
 	set_map_size(data, map);
 	data->map = ft_calloc(data->map_height + 1, sizeof(char *));
 	if (!data->map)
-		return ;
+		exit_error(data, "Malloc failed.", FAIL);
 	copy_filemap(data, map);
 }

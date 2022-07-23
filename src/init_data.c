@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 19:45:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 19:54:03 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:43:43 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ static bool	line_empty(char *line)
 	return (true);
 }
 
+static void	set_flag(t_str_node *node)
+{
+	if (line_empty(node->str))
+	{
+		node->empty = true;
+		return ;
+	}
+	node->map = is_str_map(node->str);
+}
+
 void	get_data(t_data *data)
 {
 	char		*line;
@@ -31,15 +41,15 @@ void	get_data(t_data *data)
 	line = get_next_line(data->fd);
 	while (line)
 	{
-		if (line && !line_empty(line))
-		{
-			curr_node = append_str_node(&data->file_data, new_str_node(line));
-			curr_node->map = is_str_map(line);
-		}
+		curr_node = append_str_node(&data->file_data, new_str_node(line));
+		set_flag(curr_node);
 		free(line);
 		line = get_next_line(data->fd);
 	}
 	free(line);
+	if (!data->file_data)
+		exit_error(data, "Map file empty.", FAIL);
+	
 }
 
 void	init_data(t_data *data)

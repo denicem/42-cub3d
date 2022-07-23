@@ -6,11 +6,35 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 18:34:43 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:11:34 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static void	check_rest(t_data *data, t_str_node **node)
+{
+	t_str_node	*curr;
+	t_str_node	*last;
+
+	curr = *node;
+	last = get_last_str_node(*node);
+	while (!curr->map)
+	{
+		if (!curr->empty)
+			exit_error(data, "Map file invalid.", FAIL);
+		if (curr == last)
+			exit_error(data, "No map existent.", FAIL);
+		curr = curr->next;
+	}
+	while (!last->map)
+	{
+		if (!last->empty)
+			exit_error(data, "Map file invalid.", FAIL);;
+		del_last_node(&curr);
+		last = get_last_str_node(curr);
+	}
+}
 
 static bool	check_map_identifier(t_parser_check *check)
 {
@@ -59,11 +83,15 @@ void	parser(t_data *data)
 	init_parser_check(&data->check);
 	curr_node = data->file_data;
 	data->texture_paths = ft_calloc(4, sizeof(char *));
+	if (!data->texture_paths)
+		exit_error(data, "Malloc failed.", FAIL);
 	while (!check_map_identifier(&data->check))
 	{
 		if (curr_node->map && !check_map_identifier(&data->check))
 			exit_error(data, "Map cannot be first.", FAIL);
-		check_curr_str(data, curr_node->str);
+		if (!curr_node->empty)
+			check_curr_str(data, curr_node->str);
 		curr_node = curr_node->next;
 	}
+	check_rest(data, &curr_node);
 }

@@ -6,11 +6,26 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:05:35 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 18:07:44 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:10:16 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	free_data(t_data *data)
+{
+	(void) data;
+	// if (data->file_path)
+	// 	free(data->file_path);
+	// if (data->file_data)
+	// 	free_str_node(&data->file_data);
+	// if (data->player)
+	// 	free(data->player);
+	// if (data->map)
+	// 	ft_free_str_arr(&data->map);
+	// if (data->texture_paths)
+	// 	ft_free_str_arr(&data->texture_paths);
+}
 
 void	exit_error(t_data *data, char *msg, int error_code)
 {

@@ -26,6 +26,8 @@ t_str_node	*new_str_node(char *str)
 		return (NULL);
 	}
 	new->next = NULL;
+	new->map = false;
+	new->empty = false;
 	return (new);
 }
 
@@ -50,4 +52,45 @@ t_str_node	*append_str_node(t_str_node **head, t_str_node *new)
 		last->next = new;
 	}
 	return (new);
+}
+
+void	del_last_node(t_str_node **head)
+{
+	t_str_node	*last;
+	t_str_node	*prev;
+
+	last = *head;
+	prev = last;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	if (prev == last)
+	{
+		free((*head)->str);
+		(*head)->str = 0;
+		free(*head);
+		return ;
+	}
+	free(last->str);
+	last->str = 0;
+	free(last);
+	prev->next = NULL;
+}
+
+void	free_str_node(t_str_node **node)
+{
+	t_str_node	*curr;
+	t_str_node	*next;
+
+	curr = *node;
+	while (curr)
+	{
+		next = curr->next;
+		free(curr->str);
+		free(curr);
+		curr = next;
+	}
+	free(node);
 }
