@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   render_world.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:17:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 14:17:38 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:11:20 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	draw_vertical_line(int ray_count, int wallStart, int wallEnd, t_data *data, t_ray *ray)
+void	draw_vertical_line(int ray_count, int wallStart,
+						int wallEnd, t_data *data)
 {
 	int	i;
 
 	i = 0;
-	insert_textures(data, ray_count, wallStart, wallEnd, ray);
+	insert_textures(data, ray_count, wallStart, wallEnd);
 	while (i < HEIGHT)
 	{
 		if (i < wallStart)

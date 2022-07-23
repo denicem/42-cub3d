@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 20:11:34 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:09:06 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	check_rest(t_data *data, t_str_node **node)
 	while (!last->map)
 	{
 		if (!last->empty)
-			exit_error(data, "Map file invalid.", FAIL);;
+			exit_error(data, "Map file invalid.", FAIL);
 		del_last_node(&curr);
 		last = get_last_str_node(curr);
 	}
