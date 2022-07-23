@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 19:33:35 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:54:13 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ int	main(int argc, char *argv[])
 		init_data(&data);
 		parser(&data);
 		init_val(&data);
-		print_str_node(data.file_data);
-		print_map(&data);
-		// get_textures(&data);
-		// render_world(&data);
+		get_textures(&data);
+		render_world(&data);
 	}
 	else
 		printf("%sToo many arguments\n%s./cub3d <path to a map file>[✓]\n%s",

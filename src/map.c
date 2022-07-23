@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:59:08 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 19:38:00 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:21:09 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	set_map_size(t_data *data, t_str_node *node)
 	{
 		if (node->empty)
 			exit_error(data, "Empty line between map.", FAIL);
+		if (!node->map)
+			exit_error(data, "Invalid map characters.", FAIL);
 		curr_wid = ft_strlen(node->str);
 		if (node->str[curr_wid - 1] == '\n')
 			curr_wid--;

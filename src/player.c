@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:09:48 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 19:58:37 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:27:38 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ static void	set_player_pos_dir(t_data *data, int x, int y, char c)
 
 void	set_player(t_data *data)
 {
-	bool	player_found;
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
-	player_found = false;
 	y = 0;
 	while (data->map[y])
 	{
@@ -74,11 +72,9 @@ void	set_player(t_data *data)
 		{
 			if (is_player_char(data->map[y][x]))
 			{
-				if (player_found)
-					return; // TODO: return value: too many player position
 				set_player_pos_dir(data, x, y, data->map[y][x]);
 				data->map[y][x] = '0';
-				player_found = true;
+				return ;
 			}
 			x++;
 		}
