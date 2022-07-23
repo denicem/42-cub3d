@@ -1,8 +1,8 @@
 
-NO ./textures/wall_4.png
-SO ./textures/wall_3.png
-EA ./textures/wall_3.png
-WE ./textures/wall_3.png
+NO ./textures/plaster15_alt_d.png
+SO ./textures/tile_blood04.png
+EA textures/silent_metall05.png
+WE textures/silent_metall05.png
 
 C 0,0,0
 F 0,0,0
