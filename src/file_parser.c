@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:38:38 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/09 23:13:21 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:49:26 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_ext(char *filename)
 	if (ft_strlen(filename) < 4)
 		return (res);
 	file_ext = ft_substr(filename, ft_strlen(filename) - 4, 4);
-	if (!strcmp(file_ext, ".cub")) //TODO: write own version of strcmp and add it to Libft!
+	if (!ft_strcmp(file_ext, ".cub"))
 		res = SUCC;
 	free(file_ext);
 	return (res);

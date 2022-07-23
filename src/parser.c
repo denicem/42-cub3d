@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 14:09:41 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:46:14 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,42 @@ bool check_map_identifier(t_parser_check *check)
 	return (true);
 }
 
+static char	**get_directions()
+{
+	char	**dir;
+
+	dir = ft_calloc_str_arr(5);
+	if (!dir)
+		return (NULL);
+	dir[0] = ft_strdup("EA");
+	dir[1] = ft_strdup("WE");
+	dir[2] = ft_strdup("NO");
+	dir[3] = ft_strdup("SO");
+	return (dir);
+}
+
 void	texture_identifier(t_data *data, char *dir, char *path)
 {
 	int		i;
-	char	*directions[4];
+	char	**directions;
 
-	// check if path exists
 	if (open(path, O_RDONLY) == FILE_NOT_FOUND)
 		exit(FAIL); //fail
-	directions[0] = "EA";
-	directions[1] = "WE";
-	directions[2] = "NO";
-	directions[3] = "SO";
+	directions = get_directions();
+	if (!directions)
+		exit(FAIL);
 	i = 0;
 	while (i < 4 && directions[i])
 	{
-		if (!ft_strncmp(directions[i], dir, 2))
+		if (!ft_strcmp(directions[i], dir))
 		{
 			data->texture_paths[i] = ft_strdup(path);
+			ft_free_str_arr(&directions);
 			return ;
 		}
 		i++;
 	}
+	ft_free_str_arr(&directions);
 	exit(FAIL);
 }
 
