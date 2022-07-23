@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:01:58 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 18:33:38 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:04:05 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	color_identifier(t_data *data, char c, char *c_code)
 {
 	char	**rgb;
 
+	if (c != 'C' && c != 'F')
+		exit_error(data, "Map identifier invalid.", FAIL);
 	if (!check_syntax(c_code))
 		exit_error(data, "Color identifier invalid.", FAIL);
 	rgb = ft_split(c_code, ',');

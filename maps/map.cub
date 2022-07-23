@@ -1,9 +1,9 @@
-NO ./textures/bluestone.png
+NOa ./textures/bluestone.png
 SO ./textures/colorstone.png
 EA textures/wood.png
 WE textures/greystone.png
 
-C 155,100,160
+d 155,100,160
 F 111,111,111
 
 
