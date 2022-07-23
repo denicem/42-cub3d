@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 20:16:09 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/24 00:00:13 by dmontema         ###   ########.fr       */
+/*   Created: 2022/07/24 00:26:27 by mrojas-e          #+#    #+#             */
+/*   Updated: 2022/07/24 00:45:14 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,25 @@ int	get_textures(t_data *data)
 void	insert_textures(t_data *data, int x, int draw_start, int draw_end)
 {
 	mlx_texture_t	*texture;
-	int				tex_x;
-	int				tex_y;
 	double			step;
 	double			texture_pos;
 
 	texture = &data->png[data->ray.side];
-	tex_x = find_texture_x(data, texture, &data->ray);
+	data->tex_x = find_texture_x(data, texture, &data->ray);
 	step = (1.0 * texture->height) / (draw_end - draw_start);
-	texture_pos = (draw_start - HEIGHT / 2 + (draw_end - draw_start) / 2)
-		* step;
+	texture_pos = (draw_start - HEIGHT / 2 + (draw_end - draw_start)
+			/ 2) * step;
 	while (draw_start < draw_end)
 	{
-		tex_y = (int)(texture_pos) & (texture->height - 1);
+		data->tex_y = (int)(texture_pos) & (texture->height - 1);
 		texture_pos += step;
 		if (draw_start >= 0 && draw_start <= HEIGHT)
 		{
-			ft_memcpy(&data->img->pixels[(draw_start
-					* data->img->width + x) * 4],
-				&texture->pixels[(tex_y * texture->height + tex_x) * 4], 4);
+			if (((draw_start * data->img->width + x) * 4)
+				< (data->img->height * data->img->width * 4))
+				ft_memcpy(&data->img->pixels[(draw_start * data->img->width + x)
+					* 4], &texture->pixels[(data->tex_y
+						* texture->height + data->tex_x) * 4], 4);
 		}
 		draw_start++;
 	}

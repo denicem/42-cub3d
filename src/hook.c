@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/22 19:52:23 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/23 23:20:13 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,12 @@ void	hook(void *param)
 		mlx_close_window(mlx);
 	movement_up_down(data, &vector);
 	movement_left_right(data, &vector);
+	if (mlx_is_key_down(mlx, MLX_KEY_R))
+	{
+		data->player->pos = data->player_start.pos;
+		data->player->dir = data->player_start.dir;
+		data->player->plane = data->player_start.plane;
+	}
 	movement_rotation(data);
 	raycast(data);
 }

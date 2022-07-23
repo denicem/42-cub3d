@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 22:07:55 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:37:49 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ typedef struct s_data
 	t_colour		f_colour;
 	mlx_texture_t	png[4];
 	t_ray			ray;
+	int				tex_x;
+	int				tex_y;
 
 	mlx_t			*mlx;
 	mlx_image_t		*img;
