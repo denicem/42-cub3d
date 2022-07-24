@@ -1,7 +1,7 @@
 
-SO ./textures/wall_4.png
-EA ./textures/wall_4.png
-WE ./textures/wall_4.png
+SO ./textures/wall_1.png
+EA ./textures/wall_1.png
+WE ./textures/wall_1.png
 
 C 155,100,160
 F 111,111,111
@@ -19,4 +19,4 @@ F 111,111,111
 10100000100001001
 10000000000000001
 11111111111111111
-NO ./textures/wall_4.png
+NO ./textures/wall_1.png
