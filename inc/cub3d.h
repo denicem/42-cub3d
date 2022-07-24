@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 15:41:35 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:38:55 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ void		parser(t_data *data);
 void		init_val(t_data *data);
 void		texture_identifier(t_data *data, char *dir, char *path);
 void		color_identifier(t_data *data, char c, char *c_code);
+void		map_parser(t_data *data);
 
 void		create_map(t_data *data);
 bool		is_player_char(int c);
@@ -159,7 +160,6 @@ bool		is_surround_char(int c);
 bool		is_map_char(int c);
 bool		is_str_map(char *str);
 t_str_node	*get_first_map_str(t_str_node *node);
-
 void		set_player(t_data *data);
 
 void		raycast(t_data *data);
@@ -181,8 +181,6 @@ void		print_str_node(t_str_node *node);
 void		print_map(t_data *data);
 void		print_player_info(t_data *data);
 void		print_map_identifier(t_data *data);
-
-// TEXTURES
 
 void		insert_textures(t_data *info, int x, int draw_start, int draw_end);
 int			get_textures(t_data *data);

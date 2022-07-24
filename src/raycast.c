@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:55:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 22:09:59 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:33:29 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-// DEBUG
 #include <time.h>
 
 static void	reset_ray(t_ray *ray)
@@ -58,7 +57,6 @@ void	dda(t_ray *ray, t_data *data)
 
 void	raycast(t_data *data)
 {
-	//t_ray	ray;
 	int		raycount;
 	int		height;
 	int		wallstart;
@@ -67,13 +65,12 @@ void	raycast(t_data *data)
 	raycount = 0;
 	while (raycount < WIDTH)
 	{
-		reset_ray(&data->ray); //resets data->ray
-		init_ray(&data->ray, data, raycount); // initialize starting values for data->ray
-		set_dist(&data->ray, data); // setting up step and side_dist for data->ray
-		dda(&data->ray, data); //DDA
-		set_ray_dist(&data->ray); // defining data.ray distance to wall
-		set_draw_val(&data->ray, &height, &wallstart, &wallend); // defining height and draw values
-		//draw ONE vertical line and move to next data.ray
+		reset_ray(&data->ray);
+		init_ray(&data->ray, data, raycount);
+		set_dist(&data->ray, data);
+		dda(&data->ray, data);
+		set_ray_dist(&data->ray);
+		set_draw_val(&data->ray, &height, &wallstart, &wallend);
 		draw_vertical_line(raycount, wallstart, wallend, data);
 		raycount++;
 	}

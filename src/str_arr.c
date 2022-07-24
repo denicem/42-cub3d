@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:29:46 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 14:44:54 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:33:45 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ void	free_str_node(t_str_node **node)
 		free(curr);
 		curr = next;
 	}
-	// free(node);
 }
