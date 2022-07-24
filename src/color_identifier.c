@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:01:58 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 18:25:48 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:29:24 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,22 @@ static int	set_color(t_data *data, const char **rgb, char c)
 	set_color.blue = ft_atoi(rgb[2]);
 	if (!check_color(set_color.red) || !check_color(set_color.green)
 		|| !check_color(set_color.blue))
-		return (FAIL);
+		return (FAILURE);
 	if (c == 'C')
 	{
+		if (data->check.c_identifier)
+			return (2);
 		data->c_colour = set_color;
 		data->check.c_identifier = true;
 	}
 	else if (c == 'F')
 	{
+		if (data->check.f_identifier)
+			return (2);
 		data->f_colour = set_color;
 		data->check.f_identifier = true;
 	}
-	return (SUCC);
+	return (SUCCESS);
 }
 
 static bool	check_syntax(char *str)
@@ -66,22 +70,28 @@ static bool	check_syntax(char *str)
 void	color_identifier(t_data *data, char c, char *c_code)
 {
 	char	**rgb;
-	if (data->check.c_identifier || data->check.f_identifier)
-		exit_error(data, "Map file invalid.", FAIL);
+	int		code;
+
 	if (c != 'C' && c != 'F')
-		exit_error(data, "Map identifier invalid.", FAIL);
+		exit_error(data, "Map identifier invalid.", FAILURE);
 	if (!check_syntax(c_code))
-		exit_error(data, "Color identifier invalid.", FAIL);
+		exit_error(data, "Color identifier invalid.", FAILURE);
 	rgb = ft_split(c_code, ',');
 	if (ft_strlen_arr((const char **) rgb) != 3)
 	{
 		ft_free_str_arr(&rgb);
-		exit_error(data, "Color identifier invalid.", FAIL);
+		exit_error(data, "Color identifier invalid.", FAILURE);
 	}
-	if (set_color(data, (const char **) rgb, c) == FAIL)
+	code = set_color(data, (const char **) rgb, c);
+	if (code == FAILURE)
 	{
 		ft_free_str_arr(&rgb);
-		exit_error(data, "Color identifier must be between 0-255.", FAIL);
+		exit_error(data, "Color identifier must be between 0-255.", FAILURE);
+	}
+	else if (code == 2)
+	{
+		ft_free_str_arr(&rgb);
+		exit_error(data, "Double color identifier.", FAILURE);
 	}
 	ft_free_str_arr(&rgb);
 }

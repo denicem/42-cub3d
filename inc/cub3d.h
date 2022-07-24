@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 18:35:09 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 20:26:06 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define SUCC 0
-# define FAIL 1
+# define SUCCESS 0
+# define FAILURE 1
 # define FILE_NOT_FOUND -1
 # define FILENAME_NOT_CORRECT -2
 

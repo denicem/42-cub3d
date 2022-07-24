@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 19:45:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 15:46:55 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:19:48 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	get_data(t_data *data)
 	}
 	free(line);
 	if (!data->file_data)
-		exit_error(data, "Map file empty.", FAIL);
+		exit_error(data, "Map file empty.", FAILURE);
 }
 
 void	init_data(t_data *data)
 {
 	data->fd = file_parser(data->file_path);
-	if (data->fd < SUCC)
+	if (data->fd < SUCCESS)
 	{
 		if (data->fd == FILE_NOT_FOUND)
 			printf("%sError:\nFile not found!\n%s", PURPLE, RESET);
@@ -62,9 +62,9 @@ void	init_data(t_data *data)
 			printf("%sError:\nOnly file with a .cub extension allowed!\n%s",
 				RED, RESET);
 		close(data->fd);
-		exit(FAIL);
+		exit(FAILURE);
 	}
-	else if (data->fd >= SUCC)
+	else if (data->fd >= SUCCESS)
 		get_data(data);
 	close(data->fd);
 }
