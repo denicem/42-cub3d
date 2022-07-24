@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 19:19:36 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:36:21 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_curr_str(t_data *data, char *str)
 
 	str_arr = ft_split_ws(str);
 	if (!str_arr)
-		exit_error(data, "Malloc FAILUREed.", FAILURE);
+		exit_error(data, "Malloc failed.", FAILURE);
 	if (ft_strlen_arr((const char **) str_arr) != 2)
 	{
 		ft_free_str_arr(&str_arr);
@@ -87,7 +87,7 @@ void	parser(t_data *data)
 	curr_node = data->file_data;
 	data->texture_paths = ft_calloc(5, sizeof(char *));
 	if (!data->texture_paths)
-		exit_error(data, "Malloc FAILUREed.", FAILURE);
+		exit_error(data, "Malloc failed.", FAILURE);
 	while (!check_map_identifier(&data->check))
 	{
 		if (curr_node->map && !check_map_identifier(&data->check))
