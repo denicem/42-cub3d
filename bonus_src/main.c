@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:39:10 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 22:35:22 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 23:37:43 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		progress_bar();
 		ft_bzero(&data, sizeof(t_data));
 		data.file_path = ft_strdup(argv[1]);
 		init_data(&data);
 		parser(&data);
 		init_val(&data);
 		get_textures(&data);
+		progress_bar();
 		render_world(&data);
 		free_data(&data);
 	}
