@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:37:06 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 16:58:27 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:19:36 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_open_space(t_data *data, char **map, int x, int y)
 		|| !map[y + 1][x - 1] || !is_map_char(map[y + 1][x - 1])
 		|| !map[y + 1][x] || !is_map_char(map[y + 1][x])
 		|| !map[y + 1][x + 1] || !is_map_char(map[y + 1][x + 1]))
-		exit_error(data, "Open space not closed/surrounded by walls.", FAIL);
+		exit_error(data, "Open space not closed/surrounded by walls.", FAILURE);
 }
 
 static void	check_surroundings(t_data *data)
@@ -53,7 +53,7 @@ static void	check_border(t_data *data)
 	{
 		if ((data->map)[0][x] == '0' || is_player_char((data->map)[0][x]))
 			exit_error(data, "Open space not closed/surrounded by walls.",
-				FAIL);
+				FAILURE);
 		x++;
 	}
 	x = 0;
@@ -62,7 +62,7 @@ static void	check_border(t_data *data)
 		if ((data->map)[data->map_height - 1][x] == '0'
 			|| is_player_char((data->map)[0][x]))
 			exit_error(data, "Open space not closed/surrounded by walls.",
-				FAIL);
+				FAILURE);
 		x++;
 	}
 }
@@ -87,9 +87,9 @@ static void	check_player(t_data *data)
 		y++;
 	}
 	if (count < 1)
-		exit_error(data, "No player located.", FAIL);
+		exit_error(data, "No player located.", FAILURE);
 	else if (count > 1)
-		exit_error(data, "Too many players located.", FAIL);
+		exit_error(data, "Too many players located.", FAILURE);
 }
 
 void	map_parser(t_data *data)

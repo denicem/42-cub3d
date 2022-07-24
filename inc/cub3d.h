@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 16:41:41 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:19:06 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define SUCC 0
-# define FAIL 1
+# define SUCCESS 0
+# define FAILURE 1
 # define FILE_NOT_FOUND -1
 # define FILENAME_NOT_CORRECT -2
 

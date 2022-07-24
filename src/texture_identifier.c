@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:00:12 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 15:38:29 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:19:36 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	texture_identifier(t_data *data, char *dir, char *path)
 	char	**directions;
 
 	if (open(path, O_RDONLY) == FILE_NOT_FOUND)
-		exit_error(data, "Texture path could not be found.", FAIL);
+		exit_error(data, "Texture path could not be found.", FAILURE);
 	directions = get_directions();
 	if (!directions)
-		exit_error(data, "Malloc failed.", FAIL);
+		exit_error(data, "Malloc FAILUREed.", FAILURE);
 	i = 0;
 	while (i < 4 && directions[i])
 	{
@@ -61,5 +61,5 @@ void	texture_identifier(t_data *data, char *dir, char *path)
 		i++;
 	}
 	ft_free_str_arr(&directions);
-	exit_error(data, "Map identifier wrong.", FAIL);
+	exit_error(data, "Map identifier wrong.", FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 00:26:27 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/24 16:35:47 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:19:36 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_textures(t_data *data)
 	data->png[3] = mlx_load_png(data->texture_paths[3]);
 	if (!(data->png[0]) || !(data->png[1])
 		|| !(data->png[2]) || !(data->png[3]))
-		exit_error(data, "Loading PNG files failed.", FAIL);
+		exit_error(data, "Loading PNG files FAILUREed.", FAILURE);
 	return (1);
 }
 
