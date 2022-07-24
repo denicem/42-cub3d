@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:05:35 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 15:44:37 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:41:10 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	free_data(t_data *data)
 {
-	printf("data: %p\n", data);
-	printf("map: %p\n", data->map);
 	if (data->file_path)
 		free(data->file_path);
 	if (data->file_data)
@@ -26,7 +24,6 @@ void	free_data(t_data *data)
 		ft_free_str_arr(&data->map);
 	if (data->texture_paths)
 		ft_free_str_arr(&data->texture_paths);
-	system("leaks cub3d");
 }
 
 void	exit_error(t_data *data, char *msg, int error_code)

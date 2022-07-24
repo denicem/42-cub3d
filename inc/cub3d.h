@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 16:38:55 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:41:41 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,6 @@ void		draw_vertical_line(int ray_count, int wallStart,
 int			get_rgba(t_data *data, int c, int a);
 
 void		hook(void *param);
-
-// NOTE: temp funcs - for debuggin' purposes
-void		print_str_node(t_str_node *node);
-void		print_map(t_data *data);
-void		print_player_info(t_data *data);
-void		print_map_identifier(t_data *data);
 
 void		insert_textures(t_data *info, int x, int draw_start, int draw_end);
 int			get_textures(t_data *data);
