@@ -6,7 +6,7 @@
 /*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:52:50 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/22 19:59:32 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:58:48 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,19 @@ void	progress_bar(void)
 		i ++;
 	}
 	printf("\n");
+}
+
+void	jumpscare(void)
+{
+	int	random_num;
+
+	random_num = random() % 1000;
+	if (random_num == 15)
+	{
+		random_num *= (random() % 26);
+		if (random_num % 2)
+			system("afplay textures/jumpscare1.mp3 &");
+		else
+			system("afplay textures/jumpscare2.mp3 &");
+	}
 }

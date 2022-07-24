@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 14:51:46 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:36:17 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	jumpscare(void)
-{
-	int	random_num;
-
-	random_num = random() % 1000;
-	if (random_num == 15)
-	{
-		random_num *= (random() % 26);
-		if (random_num % 2)
-			system("afplay textures/jumpscare1.mp3 &");
-		else
-			system("afplay textures/jumpscare2.mp3 &");
-	}
-}
 
 static void	movement_up_down(t_data *data, t_vect *vector)
 {
@@ -81,12 +66,11 @@ static void	movement_left_right(t_data *data, t_vect *vector)
 	}
 }
 
-static void	movement_rotation(t_data *data)
+void	movement_rotation(t_data *data)
 {
 	mlx_t	*mlx;
 	float	old_dir_x;
 	float	old_plane_x;
-	float	rot;
 
 	mlx = data->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT)
@@ -95,18 +79,27 @@ static void	movement_rotation(t_data *data)
 		old_dir_x = data->player->dir.x;
 		old_plane_x = data->player->plane.x;
 		if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-			rot = ROT;
+			turn_left(data);
 		else
-			rot = -ROT;
-		data->player->dir.x = data->player->dir.x * cos(rot)
-			- data->player->dir.y * sin(rot);
-		data->player->dir.y = old_dir_x * sin(rot)
-			+ data->player->dir.y * cos(rot);
-		data->player->plane.x = data->player->plane.x
-			* cos(rot) - data->player->plane.y * sin(rot);
-		data->player->plane.y = old_plane_x * sin(rot)
-			+ data->player->plane.y * cos(rot);
-	}	
+			turn_right(data);
+	}
+}
+
+void	mouse_rotate(t_data *data)
+{
+	int			x;
+	int			y;
+	static int	old_x;
+
+	mlx_get_mouse_pos(data->mlx, &x, &y);
+	if (x <= WIDTH && x >= 0 && y <= HEIGHT && y >= 0)
+	{
+		if (x < old_x)
+			turn_left(data);
+		else if (x > old_x)
+			turn_right(data);
+	}
+	old_x = x;
 }
 
 void	hook(void *param)
@@ -122,6 +115,7 @@ void	hook(void *param)
 		mlx_close_window(mlx);
 	movement_up_down(data, &vector);
 	movement_left_right(data, &vector);
+	mouse_rotate(data);
 	if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
 		data->player->pos = data->player_start.pos;

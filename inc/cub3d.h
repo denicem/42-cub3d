@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 19:19:06 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:37:06 by mrojas-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define HEIGHT 1080
 # define PLANE 1.66
 # define MOV 0.055
-# define ROT 0.033
+# define ROT 0.055
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -175,6 +175,10 @@ void		draw_vertical_line(int ray_count, int wallStart,
 int			get_rgba(t_data *data, int c, int a);
 
 void		hook(void *param);
+void		mouse_rotate(t_data *data);
+void		turn_left(t_data *data);
+void		turn_right(t_data *data);
+void		jumpscare(void);
 
 void		insert_textures(t_data *info, int x, int draw_start, int draw_end);
 int			get_textures(t_data *data);
