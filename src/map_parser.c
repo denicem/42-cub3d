@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:37:06 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 16:37:23 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:58:27 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	check_border(t_data *data)
 	x = 0;
 	while ((data->map)[0][x])
 	{
-		if ((data->map)[0][x] == '0')
+		if ((data->map)[0][x] == '0' || is_player_char((data->map)[0][x]))
 			exit_error(data, "Open space not closed/surrounded by walls.",
 				FAIL);
 		x++;
@@ -59,7 +59,8 @@ static void	check_border(t_data *data)
 	x = 0;
 	while ((data->map)[data->map_height - 1][x])
 	{
-		if ((data->map)[data->map_height - 1][x] == '0')
+		if ((data->map)[data->map_height - 1][x] == '0'
+			|| is_player_char((data->map)[0][x]))
 			exit_error(data, "Open space not closed/surrounded by walls.",
 				FAIL);
 		x++;
