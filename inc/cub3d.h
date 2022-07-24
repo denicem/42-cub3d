@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 00:37:49 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:41:35 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,13 @@ typedef struct s_data
 	char			**texture_paths;
 	t_colour		c_colour;
 	t_colour		f_colour;
-	mlx_texture_t	png[4];
+	mlx_texture_t	*png[4];
 	t_ray			ray;
 	int				tex_x;
 	int				tex_y;
 
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	*m_wall;
 
 	t_parser_check	check;
 }					t_data;

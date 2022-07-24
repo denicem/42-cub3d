@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_world.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 01:17:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 22:11:20 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:10:07 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ int	render_world(t_data *data)
 		return (1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
-	init_val(data);
 	system("afplay textures/lurking.mp3 &");
 	mlx_loop_hook(data->mlx, &hook, data);
 	mlx_loop(data->mlx);
 	mlx_delete_image(data->mlx, data->img);
+	mlx_delete_texture(data->png[0]);
+	mlx_delete_texture(data->png[1]);
+	mlx_delete_texture(data->png[2]);
+	mlx_delete_texture(data->png[3]);
 	mlx_terminate(data->mlx);
 	system("pkill afplay");
-	free(data->player);
 	return (0);
 }

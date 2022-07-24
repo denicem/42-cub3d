@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:05:35 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 00:05:46 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:44:37 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 void	free_data(t_data *data)
 {
-	(void) data;
-	// if (data->file_path)
-	// 	free(data->file_path);
-	// if (data->file_data)
-	// 	free_str_node(&data->file_data);
-	// if (data->player)
-	// 	free(data->player);
-	// if (data->map)
-	// 	ft_free_str_arr(&data->map);
-	// if (data->texture_paths)
-	// 	ft_free_str_arr(&data->texture_paths);
+	printf("data: %p\n", data);
+	printf("map: %p\n", data->map);
+	if (data->file_path)
+		free(data->file_path);
+	if (data->file_data)
+		free_str_node(&data->file_data);
+	if (data->player)
+		free(data->player);
+	if (data->map)
+		ft_free_str_arr(&data->map);
+	if (data->texture_paths)
+		ft_free_str_arr(&data->texture_paths);
+	system("leaks cub3d");
 }
 
 void	exit_error(t_data *data, char *msg, int error_code)
@@ -33,6 +35,6 @@ void	exit_error(t_data *data, char *msg, int error_code)
 	printf("%sError:%s\n", RED, RESET);
 	if (msg)
 		printf("%s%s%s\n", RED, msg, RESET);
-	// free_data(data);
+	free_data(data);
 	exit(error_code);
 }

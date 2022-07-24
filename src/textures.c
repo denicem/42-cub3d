@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 00:26:27 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/24 00:45:14 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:09:28 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	get_textures(t_data *data)
 
 	i = 0;
 	(void) data;
-	data->png[0] = *mlx_load_png(data->texture_paths[0]);
-	data->png[1] = *mlx_load_png(data->texture_paths[1]);
-	data->png[2] = *mlx_load_png(data->texture_paths[2]);
-	data->png[3] = *mlx_load_png(data->texture_paths[3]);
-	// if (!(data->png[0]) || !(data->png[1]) || !(data->png[2]) || !(data->png[3]))
-	// 	exit_error(data, "Loading PNG files failed.", FAIL);
+	data->png[0] = mlx_load_png(data->texture_paths[0]);
+	data->png[1] = mlx_load_png(data->texture_paths[1]);
+	data->png[2] = mlx_load_png(data->texture_paths[2]);
+	data->png[3] = mlx_load_png(data->texture_paths[3]);
+	if (!(data->png[0]) || !(data->png[1]) || !(data->png[2]) || !(data->png[3]))
+		exit_error(data, "Loading PNG files failed.", FAIL);
 	return (1);
 }
 
@@ -56,7 +56,7 @@ void	insert_textures(t_data *data, int x, int draw_start, int draw_end)
 	double			step;
 	double			texture_pos;
 
-	texture = &data->png[data->ray.side];
+	texture = data->png[data->ray.side];
 	data->tex_x = find_texture_x(data, texture, &data->ray);
 	step = (1.0 * texture->height) / (draw_end - draw_start);
 	texture_pos = (draw_start - HEIGHT / 2 + (draw_end - draw_start)

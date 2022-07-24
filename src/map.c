@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:59:08 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 20:21:09 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:08:24 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	copy_filemap(t_data *data, t_str_node *map)
 		while (x < data->map_width && map->str[x])
 		{
 			if (ft_isspace(map->str[x]) && map->str[x] != '\n')
-				(data->map)[y][x] = ' ';
+				(data->map)[y][x] = '+';
 			else if (is_map_char(map->str[x]))
 				(data->map)[y][x] = map->str[x];
 			x++;

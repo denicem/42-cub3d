@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_arr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:29:46 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 22:11:35 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 14:44:54 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ void	free_str_node(t_str_node **node)
 		free(curr);
 		curr = next;
 	}
-	free(node);
+	// free(node);
 }

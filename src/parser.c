@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 22:09:06 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:54:17 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	check_curr_str(t_data *data, char *str)
 	if (!str_arr)
 		exit_error(data, "Malloc failed.", FAIL);
 	if (ft_strlen_arr((const char **) str_arr) != 2)
+	{
+		ft_free_str_arr(&str_arr);
 		exit_error(data, "Map identifier invalid.", FAIL);
+	}
 	if (ft_strlen(str_arr[0]) == 2)
 		texture_identifier(data, str_arr[0], str_arr[1]);
 	else if (ft_strlen(str_arr[0]) == 1)
@@ -82,7 +85,7 @@ void	parser(t_data *data)
 
 	init_parser_check(&data->check);
 	curr_node = data->file_data;
-	data->texture_paths = ft_calloc(4, sizeof(char *));
+	data->texture_paths = ft_calloc(5, sizeof(char *));
 	if (!data->texture_paths)
 		exit_error(data, "Malloc failed.", FAIL);
 	while (!check_map_identifier(&data->check))

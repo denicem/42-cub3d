@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:21:55 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 23:59:48 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:56:51 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ void	map_parser(t_data *data)
 
 void	init_val(t_data *data)
 {
+	create_map(data);
+	map_parser(data);
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		exit_error(data, "Malloc failed.", FAIL);
-	create_map(data);
-	map_parser(data);
 	set_player(data);
 }
