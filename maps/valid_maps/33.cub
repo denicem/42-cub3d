@@ -1,9 +1,9 @@
 C               155,100,160
 
-NO ./textures/wall_4.png
-SO ./textures/wall_3.png
-EA ./textures/wall_3.png
-WE ./textures/wall_3.png
+NO ./textures/wall_1.png
+SO ./textures/wall_1.png
+EA ./textures/wall_1.png
+WE ./textures/wall_1.png
 
 F 111,111,111
 
