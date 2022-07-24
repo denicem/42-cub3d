@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:50:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 15:54:17 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:16:58 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	check_rest(t_data *data, t_str_node **node)
 
 	curr = *node;
 	last = get_last_str_node(*node);
-	while (!curr->map)
+	while (curr && !curr->map)
 	{
 		if (!curr->empty)
 			exit_error(data, "Map file invalid.", FAIL);
-		if (curr == last)
-			exit_error(data, "No map existent.", FAIL);
 		curr = curr->next;
 	}
+	if (!curr)
+		exit_error(data, "No map existent.", FAIL);
 	while (!last->map)
 	{
 		if (!last->empty)

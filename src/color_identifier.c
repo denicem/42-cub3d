@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:01:58 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/23 21:04:05 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:25:48 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,30 @@ static int	set_color(t_data *data, const char **rgb, char c)
 
 static bool	check_syntax(char *str)
 {
+	int	count_commas;
+
+	count_commas = 0;
+	if (!ft_isdigit(*str))
+		return (false);
 	while (*str)
 	{
+		if (*str == ',' && ++count_commas > 2)
+			return (false);
 		if (!ft_isdigit(*str) && *str != ',')
 			return (false);
 		str++;
 	}
+	str--;
+	if (!ft_isdigit(*str))
+		return (false);
 	return (true);
 }
 
 void	color_identifier(t_data *data, char c, char *c_code)
 {
 	char	**rgb;
-
+	if (data->check.c_identifier || data->check.f_identifier)
+		exit_error(data, "Map file invalid.", FAIL);
 	if (c != 'C' && c != 'F')
 		exit_error(data, "Map identifier invalid.", FAIL);
 	if (!check_syntax(c_code))
