@@ -6,11 +6,22 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 19:45:59 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 19:19:48 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:07:38 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static bool	check_empty_str_node(t_str_node *node)
+{
+	while (node)
+	{
+		if (!node->empty)
+			return (false);
+		node = node->next;
+	}
+	return (true);
+}
 
 static bool	line_empty(char *line)
 {
@@ -47,8 +58,11 @@ void	get_data(t_data *data)
 		line = get_next_line(data->fd);
 	}
 	free(line);
-	if (!data->file_data)
+	if (!data->file_data || check_empty_str_node(data->file_data))
+	{
+		close(data->fd);
 		exit_error(data, "Map file empty.", FAILURE);
+	}
 }
 
 void	init_data(t_data *data)
