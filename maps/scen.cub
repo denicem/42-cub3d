@@ -3,8 +3,8 @@ SO ./textures/colorstone.png
 WE textures/greystone.png
 EA textures/wood.png
 
-F 18,18,18
-C 89,44,39
+C 155,100,160
+F 111,111,111
 
 
 1111111111111111111111111
