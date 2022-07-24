@@ -1,7 +1,7 @@
-NO ./textures/plaster15_alt_d.png
-SO ./textures/tile_blood04.png
-WE textures/silent_metall05.png
-EA textures/silent_metall05.png
+NO ./textures/sh_symbol.png
+SO ./textures/sh_cement.png
+WE textures/sh_rust.png
+EA textures/sh_cement.png
 
 F 18,18,18
 C 89,44,39
@@ -9,7 +9,7 @@ C 89,44,39
 11111111111111111
 10000000000000001
 10100001111110101
-1000000000S000001
+1000000000E000001
 10001001111110001
 10000000000000001
 10101010001010101
