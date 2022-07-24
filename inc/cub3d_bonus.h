@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:04:31 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 22:25:42 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 22:35:10 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 /*
 ** -----------------------------------------------------------------------------
@@ -175,13 +175,17 @@ void		draw_vertical_line(int ray_count, int wallStart,
 int			get_rgba(t_data *data, int c, int a);
 
 void		hook(void *param);
+void		mouse_rotate(t_data *data);
 void		turn_left(t_data *data);
 void		turn_right(t_data *data);
+void		jumpscare(void);
 
 void		insert_textures(t_data *info, int x, int draw_start, int draw_end);
 int			get_textures(t_data *data);
 
 void		exit_error(t_data *data, char *msg, int error_code);
 void		free_data(t_data *data);
+
+void		progress_bar(void);
 
 #endif

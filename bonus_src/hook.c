@@ -6,11 +6,11 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:00:01 by dmontema          #+#    #+#             */
-/*   Updated: 2022/07/24 22:33:09 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/07/24 22:25:08 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../inc/cub3d_bonus.h"
 
 static void	movement_up_down(t_data *data, t_vect *vector)
 {
@@ -109,11 +109,13 @@ void	hook(void *param)
 	mlx_t	*mlx;
 
 	data = (t_data *) param;
+	jumpscare();
 	mlx = data->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	movement_up_down(data, &vector);
 	movement_left_right(data, &vector);
+	mouse_rotate(data);
 	if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
 		data->player->pos = data->player_start.pos;

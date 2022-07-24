@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME		= cub3d
+B_NAME		= cub3d_bonus
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -g
@@ -29,6 +30,13 @@ SRCS		=	$(shell find $(SRC_DIR) -name "*.c" -execdir echo {} ";")
 OBJ_DIR		=	./obj
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 DEPS		=	$(OBJS:.o=.d)
+
+B_SRC_DIR	=	./bonus_src
+B_SRCS		=	$(shell find $(B_SRC_DIR) -name "*.c" -execdir echo {} ";")
+
+B_OBJ_DIR	=	./bonus_obj
+B_OBJS		=	$(addprefix $(B_OBJ_DIR)/, $(B_SRCS:.c=.o))
+B_DEPS		=	$(OBJS:.o=.d)
 
 # ***************************************************************************** #
 #	COLOURS																		#
@@ -51,7 +59,7 @@ RESET	= \033[0m
 
 all: $(NAME)
 
--include $(DEPS)
+-include $(DEPS) $(B_DEPS)
 
 $(NAME): $(OBJS)
 	@printf "$(BLUE)Linking objects and libraries to a binary file.\r"
@@ -59,7 +67,7 @@ $(NAME): $(OBJS)
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
 	@echo "\t\t$(GREEN)$(BOLD)COMPLETE!$(RESET)\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | prep
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | install_lib prep
 	@printf "$(BLUE)$(BOLD)\rCompiling: $(CYAN)$(notdir $<)\r"
 	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
@@ -73,19 +81,39 @@ clean:
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
 	@printf "$(MAGENTA)Removing object files...\r$(RESET)"
 	@rm -rf $(OBJS) $(OBJ_DIR)
+	@rm -rf $(B_OBJS) $(B_OBJ_DIR)
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
 
 fclean: clean
 	@printf "$(MAGENTA)Removing binary file...\r$(RESET)"
 	@rm -rf $(NAME)
+	@rm -rf $(B_NAME)
 	@printf "\e[50C$(GREEN)[✓]\n$(RESET)\n"
 
 re: fclean all
 
-prep:
+bonus: $(B_NAME)
+
+$(B_NAME): $(B_OBJS)
+	@printf "$(BLUE)Linking objects and libraries to a binary file.\r"
+	@$(CC) $(CFLAGS) $(B_OBJS) -o $(B_NAME) $(LIBRARIES)
+	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
+	@echo "\t\t$(GREEN)$(BOLD)COMPLETE!$(RESET)\n"
+
+$(B_OBJ_DIR)/%.o: $(B_SRC_DIR)/%.c | install_lib prep_bonus
+	@printf "$(BLUE)$(BOLD)\rCompiling: $(CYAN)$(notdir $<)\r"
+	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+	@printf "\e[50C$(GREEN)[✓]\n$(RESET)"
+
+install_lib:
 	@make Libft
 	@make MLX
+
+prep:
 	@mkdir -p $(OBJ_DIR)
+
+prep_bonus:
+	@mkdir -p $(B_OBJ_DIR)
 
 Libft:
 	@printf "$(BLUE)Creating Libft library...\r"

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   progress_bar.c                                     :+:      :+:    :+:   */
+/*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojas-e <mrojas-e@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:52:50 by mrojas-e          #+#    #+#             */
-/*   Updated: 2022/07/24 17:58:48 by mrojas-e         ###   ########.fr       */
+/*   Updated: 2022/07/24 22:39:22 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../inc/cub3d_bonus.h"
 
 void	progress_bar(void)
 {
@@ -24,7 +24,7 @@ void	progress_bar(void)
 	lable = "|/-\\";
 	ft_memset(bar, 0, 102 * sizeof(char));
 	printf("\e[0;35m \
-               LOADING PLEASE WAIT ...\e[0m\n");
+                LOADING PLEASE WAIT ...\e[0m\n");
 	while (i <= 100)
 	{
 		if (i % 3 == 0)
